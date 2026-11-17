@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SplitHouse - 08 Entrar na Casa (Scanner)</title>
+  <script src="https://www.gstatic.com/antigravity/web/dev/tailwindcss.min.js"></script>
+  <style>
+    :root {
+      --primary-purple: #5E2B97;   /* Roxo principal */
+      --soft-white: #FCFCFC;       /* Fundo e contraste limpo */
+      --dark-graphite: #2D2D2A;    /* Textos principais e títulos */
+      --accent-lilac: #CC92C2;     /* Lilás/rosa para detalhes e miras */
+      --rosy-granite: #84828F;     /* Cinza rosado para placeholders, bordas e ícones */
+    }
+
+        html, body {
+      width: 390px;
+      height: 844px;
+      margin: 0;
+      padding: 0;
+      overflow: hidden;
+      background-color: transparent;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    }
+
+    /* Dimensões padronizadas mobile (390 x 844 px) */
+    .mobile-frame {
+      width: 390px;
+      height: 844px;
+      background-color: #FCFCFC;
+      border-radius: 48px;
+      position: relative;
+      overflow: hidden;
+      box-shadow: none;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      user-select: none;
+    }
+
+    /* Entalhe superior da câmera (Dynamic Island padrão rigoroso da Tela 04) */
+    .dynamic-island {
+      width: 96px;
+      height: 24px;
+      background-color: #000;
+      border-radius: 20px;
+      position: absolute;
+      left: 50%;
+      top: 10px;
+      transform: translateX(-50%);
+      z-index: 50;
+    }
+
+    /* Brilho decorativo sutil */
+    .purple-glow-top {
+      position: absolute;
+      width: 340px;
+      height: 340px;
+      top: -120px;
+      right: -100px;
+      background: radial-gradient(circle, rgba(94, 43, 151, 0.10) 0%, rgba(204, 146, 194, 0.08) 50%, transparent 70%);
+      border-radius: 50%;
+      pointer-events: none;
+    }
+
+    .home-indicator {
+      width: 134px;
+      height: 5px;
+      background-color: #2D2D2A;
+      border-radius: 100px;
+      margin: 8px auto 12px auto;
+      opacity: 0.25;
+    }
+
+  </style>
+</head>
+<body>
+
+  <!-- FRAME MOBILE SCANNER / ENTRAR NA CASA (TELA 08) -->
+  <div class="mobile-frame" id="splithouse-screen-08">
+    
+    <div class="purple-glow-top"></div>
+
+    <!-- Barra de Status Mobile Padronizada -->
+    <div class="w-full pt-3 px-8 flex justify-between items-center z-40 text-xs font-semibold text-[#2D2D2A] relative">
+      <span class="tracking-tight pl-1">9:41</span>
+      <div class="dynamic-island"></div>
+      <div class="flex items-center gap-1.5 text-[#2D2D2A] pr-1">
+        <!-- Ícone Sinal -->
+        <svg width="15" height="11" viewBox="0 0 17 12" fill="currentColor">
+          <path d="M1 9h2.5v3H1V9zm4-3h2.5v6H5V6zm4-3h2.5v9H9V3zm4-3h2.5v12H13V0z"/>
+        </svg>
+        <!-- Ícone Wi-Fi -->
+        <svg width="14" height="11" viewBox="0 0 16 12" fill="currentColor">
+          <path d="M8 9.5a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3zm-4.2-3a5.9 5.9 0 0 1 8.4 0l-1.4 1.4a3.9 3.9 0 0 0-5.6 0L3.8 6.5zM1 3.7a9.9 9.9 0 0 1 14 0l-1.4 1.4a7.9 7.9 0 0 0-11.2 0L1 3.7z"/>
+        </svg>
+        <!-- Ícone Bateria -->
+        <div class="w-5 h-2.5 border border-[#2D2D2A] rounded-sm p-0.5 flex items-center">
+          <div class="h-full w-3/4 bg-[#2D2D2A] rounded-2xs"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Barra de Ação Superior (Botão Voltar) -->
+    <div class="w-full px-7 pt-7 pb-1 z-30 flex items-center justify-between">
+      <a href="06_selecao_casa.html" class="w-10 h-10 rounded-xl bg-white border border-[#84828F]/25 flex items-center justify-center text-[#2D2D2A] shadow-xs active:scale-95 transition-transform hover:border-[#5E2B97]/40"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"></polyline></svg></a>
+
+      <!-- Botão Lanterna / Flash -->
+      <button class="w-10 h-10 rounded-xl bg-white border border-[#84828F]/25 flex items-center justify-center text-[#84828F] hover:text-[#5E2B97] shadow-xs active:scale-95 transition-transform">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon>
+        </svg>
+      </button>
+    </div>
+
+    <!-- Área de Conteúdo Principal -->
+    <div class="flex-1 px-8 pt-3 pb-4 z-30 flex flex-col justify-start items-center text-center">
+      
+      <!-- Cabeçalho -->
+      <div class="mb-4">
+        <h2 class="text-2xl font-extrabold text-[#2D2D2A] tracking-tight mb-1">
+          Escanear QR Code
+        </h2>
+        <p class="text-xs font-normal text-[#84828F] leading-relaxed">
+          Aponte a câmera para o QR Code fornecido pelo administrador da sua casa.
+        </p>
+      </div>
+
+      <!-- Visor da Câmera Mockup com Fundo Preto Estático e Bordas Roxas -->
+      <div class="w-[230px] h-[210px] rounded-3xl bg-black border border-[#5E2B97]/30 relative overflow-hidden flex items-center justify-center shadow-lg shadow-black/20 mb-5">
+        
+        <!-- 4 Cantoneiras da Mira do Scanner em Roxo -->
+        <!-- Superior Esquerda -->
+        <div class="absolute top-4 left-4 w-6 h-6 border-t-4 border-l-4 border-[#5E2B97] rounded-tl-lg"></div>
+        <!-- Superior Direita -->
+        <div class="absolute top-4 right-4 w-6 h-6 border-t-4 border-r-4 border-[#5E2B97] rounded-tr-lg"></div>
+        <!-- Inferior Esquerda -->
+        <div class="absolute bottom-4 left-4 w-6 h-6 border-b-4 border-l-4 border-[#5E2B97] rounded-bl-lg"></div>
+        <!-- Inferior Direita -->
+        <div class="absolute bottom-4 right-4 w-6 h-6 border-b-4 border-r-4 border-[#5E2B97] rounded-br-lg"></div>
+
+        <!-- Indicador central sutil de foco -->
+        <div class="w-10 h-10 rounded-full border border-dashed border-[#CC92C2]/40 flex items-center justify-center">
+          <div class="w-2 h-2 rounded-full bg-[#CC92C2]"></div>
+        </div>
+
+      </div>
+
+      <!-- Divisor com Texto -->
+      <div class="relative w-full mb-4 flex items-center justify-center">
+        <div class="w-full border-t border-[#84828F]/20"></div>
+        <span class="absolute bg-[#FCFCFC] px-3 text-[11px] font-bold text-[#84828F] uppercase tracking-wider">
+          ou digite o código
+        </span>
+      </div>
+
+      <!-- Campo de Digitação Manual do Código -->
+      <div class="w-full flex flex-col gap-1.5 mb-2">
+        <div class="relative flex items-center">
+          <span class="absolute left-4 text-[#84828F]">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
+              <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
+            </svg>
+          </span>
+          <input 
+            type="text" 
+            placeholder="Ex: SPLIT-8924" 
+            class="w-full pl-11 pr-4 py-3.5 bg-white border border-[#84828F]/30 rounded-2xl text-sm font-bold text-[#5E2B97] uppercase tracking-widest placeholder:tracking-normal placeholder:font-normal focus:outline-none focus:border-[#5E2B97] focus:ring-2 focus:ring-[#5E2B97]/15 shadow-2xs"
+          />
+        </div>
+      </div>
+
+      <!-- Aviso da Regra de Negócio RN-02 -->
+      <p class="text-[10px] text-[#84828F] leading-tight">
+        A entrada só será efetivada após aprovação do administrador.
+      </p>
+
+    </div>
+
+    <!-- Botão de Ação Inferior -->
+    <div class="w-full px-8 pb-3 z-30 flex flex-col gap-2.5">
+      <a href="11_solicitacao_pendente.html" class="w-full py-4 rounded-2xl bg-[#5E2B97] hover:bg-[#4d237d] active:scale-[0.98] transition-all text-[#FCFCFC] font-bold text-base shadow-md shadow-[#5E2B97]/25 flex items-center justify-center gap-2 text-center decoration-none">
+        <span>Solicitar entrada</span>
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+          <line x1="5" y1="12" x2="19" y2="12"></line>
+          <polyline points="12 5 19 12 12 19"></polyline>
+        </svg>
+      </a>
+
+      <div class="home-indicator"></div>
+    </div>
+
+  </div>
+
+  <script src="navigator.js"></script>
+</body>
+</html>

@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SplitHouse - 24 Notificações</title>
+  <script src="https://www.gstatic.com/antigravity/web/dev/tailwindcss.min.js"></script>
+  <style>
+    :root {
+      --primary-purple: #5E2B97;   /* Roxo principal */
+      --soft-white: #FCFCFC;       /* Fundo e contraste limpo */
+      --dark-graphite: #2D2D2A;    /* Textos principais e títulos */
+      --accent-lilac: #CC92C2;     /* Lilás/rosa para detalhes e destaques */
+      --rosy-granite: #84828F;     /* Cinza rosado para bordas e subtítulos */
+    }
+
+        html, body {
+      width: 390px;
+      height: 844px;
+      margin: 0;
+      padding: 0;
+      overflow: hidden;
+      background-color: transparent;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    }
+
+    /* Dimensões padronizadas mobile (390 x 844 px) */
+    .mobile-frame {
+      width: 390px;
+      height: 844px;
+      background-color: #FCFCFC;
+      border-radius: 48px;
+      position: relative;
+      overflow: hidden;
+      box-shadow: none;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      user-select: none;
+    }
+
+    /* Entalhe superior da câmera */
+    .dynamic-island {
+      width: 96px;
+      height: 24px;
+      background-color: #000;
+      border-radius: 20px;
+      position: absolute;
+      left: 50%;
+      top: 10px;
+      transform: translateX(-50%);
+      z-index: 50;
+    }
+
+    .purple-glow-top {
+      position: absolute;
+      width: 340px;
+      height: 340px;
+      top: -120px;
+      right: -100px;
+      background: radial-gradient(circle, rgba(94, 43, 151, 0.10) 0%, rgba(204, 146, 194, 0.08) 50%, transparent 70%);
+      border-radius: 50%;
+      pointer-events: none;
+    }
+
+    .home-indicator {
+      width: 134px;
+      height: 5px;
+      background-color: #2D2D2A;
+      border-radius: 100px;
+      margin: 6px auto 8px auto;
+      opacity: 0.25;
+    }
+
+    .no-scrollbar::-webkit-scrollbar {
+      display: none;
+    }
+    .no-scrollbar {
+      -ms-overflow-style: none;
+      scrollbar-width: none;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- FRAME MOBILE NOTIFICAÇÕES (TELA 24) -->
+  <div class="mobile-frame" id="splithouse-screen-24">
+    
+    <div class="purple-glow-top"></div>
+
+    <!-- Barra de Status Mobile Padronizada -->
+    <div class="w-full pt-3 px-8 flex justify-between items-center z-40 text-xs font-semibold text-[#2D2D2A] relative">
+      <span class="tracking-tight pl-1">9:41</span>
+      <div class="dynamic-island"></div>
+      <div class="flex items-center gap-1.5 text-[#2D2D2A] pr-1">
+        <svg width="15" height="11" viewBox="0 0 17 12" fill="currentColor"><path d="M1 9h2.5v3H1V9zm4-3h2.5v6H5V6zm4-3h2.5v9H9V3zm4-3h2.5v12H13V0z"/></svg>
+        <svg width="14" height="11" viewBox="0 0 16 12" fill="currentColor"><path d="M8 9.5a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3zm-4.2-3a5.9 5.9 0 0 1 8.4 0l-1.4 1.4a3.9 3.9 0 0 0-5.6 0L3.8 6.5zM1 3.7a9.9 9.9 0 0 1 14 0l-1.4 1.4a7.9 7.9 0 0 0-11.2 0L1 3.7z"/></svg>
+        <div class="w-5 h-2.5 border border-[#2D2D2A] rounded-sm p-0.5 flex items-center">
+          <div class="h-full w-3/4 bg-[#2D2D2A] rounded-2xs"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Barra Superior: Voltar, Título e Marcar Lidas -->
+    <div class="w-full px-7 pt-7 pb-2 z-30 flex items-center justify-between">
+      <div class="flex items-center gap-3">
+        <a href="13_painel_principal.html" class="w-9 h-9 rounded-xl bg-white border border-[#84828F]/25 flex items-center justify-center text-[#2D2D2A] hover:border-[#5E2B97]/40 active:scale-95 transition-all">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="15 18 9 12 15 6"/>
+          </svg>
+        </a>
+        <div>
+          <h2 class="text-2xl font-extrabold text-[#2D2D2A] tracking-tight">Notificações</h2>
+          <p class="text-xs font-normal text-[#84828F]">3 pendentes de leitura</p>
+        </div>
+      </div>
+
+      <button class="text-xs font-bold text-[#5E2B97] hover:underline active:scale-95 transition-transform">
+        Limpar lidas
+      </button>
+    </div>
+
+    <!-- Abas de Filtros -->
+    <div class="w-full px-7 pt-2 pb-1 z-30 flex items-center gap-2 overflow-x-auto no-scrollbar">
+      <button class="px-3.5 py-1.5 rounded-full bg-[#5E2B97] text-[#FCFCFC] text-xs font-bold shadow-xs shrink-0">
+        Todas (3)
+      </button>
+      <button class="px-3.5 py-1.5 rounded-full bg-white border border-[#84828F]/30 text-[#84828F] hover:text-[#2D2D2A] text-xs font-semibold shrink-0">
+        Validações (1)
+      </button>
+      <button class="px-3.5 py-1.5 rounded-full bg-white border border-[#84828F]/30 text-[#84828F] hover:text-[#2D2D2A] text-xs font-semibold shrink-0">
+        Finanças (1)
+      </button>
+      <button class="px-3.5 py-1.5 rounded-full bg-white border border-[#84828F]/30 text-[#84828F] hover:text-[#2D2D2A] text-xs font-semibold shrink-0">
+        Cutucadas (1)
+      </button>
+    </div>
+
+    <!-- Lista de Notificações -->
+    <div class="flex-1 px-7 pt-2 pb-2 z-30 overflow-y-auto no-scrollbar flex flex-col gap-3">
+
+      <!-- Notificação 1: Validação de Tarefa (Não Lida) -->
+      <div class="w-full bg-white border-2 border-[#5E2B97] rounded-2xl p-4 shadow-2xs relative">
+        <div class="flex items-start gap-3">
+          <div class="w-10 h-10 rounded-xl bg-[#5E2B97]/10 text-[#5E2B97] flex items-center justify-center shrink-0">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/>
+              <circle cx="12" cy="13" r="4"/>
+            </svg>
+          </div>
+          <div class="flex-1">
+            <div class="flex items-center justify-between mb-1">
+              <span class="px-2 py-0.5 rounded-full bg-[#5E2B97]/10 text-[#5E2B97] text-[9px] font-bold">Validação</span>
+              <span class="text-[10px] text-[#84828F]">Há 15 min</span>
+            </div>
+            <h4 class="text-xs font-extrabold text-[#2D2D2A]">Doutor Octopus concluiu uma tarefa</h4>
+            <p class="text-xs text-[#84828F] leading-relaxed mt-0.5">
+              "Limpar geladeira" foi finalizada com foto comprobatória anexada para revisão.
+            </p>
+            <div class="flex items-center gap-2 mt-3 pt-2 border-t border-gray-100">
+              <a href="23_validacao_tarefa.html" class="px-3 py-1.5 rounded-xl bg-[#5E2B97] text-white text-xs font-bold active:scale-95 transition-transform inline-block">
+                Validar agora
+              </a>
+              <span class="text-[10px] text-[#84828F]">+80 XP em jogo</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Notificação 2: Cutucada (Não Lida) -->
+      <div class="w-full bg-white border border-[#84828F]/25 hover:border-[#5E2B97]/40 rounded-2xl p-4 shadow-2xs relative">
+        <div class="flex items-start gap-3">
+          <div class="w-10 h-10 rounded-xl bg-purple-50 text-[#5E2B97] flex items-center justify-center shrink-0">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/>
+            </svg>
+          </div>
+          <div class="flex-1">
+            <div class="flex items-center justify-between mb-1">
+              <span class="px-2 py-0.5 rounded-full bg-[#CC92C2]/20 text-[#2D2D2A] text-[9px] font-bold">Cutucada</span>
+              <span class="text-[10px] text-[#84828F]">Há 1 hora</span>
+            </div>
+            <h4 class="text-xs font-extrabold text-[#2D2D2A]">Lagarto te cutucou</h4>
+            <p class="text-xs text-[#84828F] leading-relaxed mt-0.5">
+              "Norman, não esquece que hoje é dia de descer os recicláveis para a coleta!"
+            </p>
+            <div class="flex items-center gap-2 mt-3 pt-2 border-t border-gray-100">
+              <a href="22_detalhes_tarefa.html" class="px-3 py-1.5 rounded-xl bg-white border border-[#84828F]/30 text-[#2D2D2A] text-xs font-bold hover:border-[#5E2B97]/40 active:scale-95 transition-all inline-block">
+                Ver minha tarefa
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Notificação 3: Finanças / Vencimento (Não Lida) -->
+      <div class="w-full bg-white border border-[#84828F]/25 hover:border-[#5E2B97]/40 rounded-2xl p-4 shadow-2xs relative">
+        <div class="flex items-start gap-3">
+          <div class="w-10 h-10 rounded-xl bg-red-50 text-red-600 flex items-center justify-center shrink-0">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <line x1="12" y1="1" x2="12" y2="23"/>
+              <path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/>
+            </svg>
+          </div>
+          <div class="flex-1">
+            <div class="flex items-center justify-between mb-1">
+              <span class="px-2 py-0.5 rounded-full bg-red-50 text-red-600 text-[9px] font-bold">Vencimento</span>
+              <span class="text-[10px] text-[#84828F]">Ontem</span>
+            </div>
+            <h4 class="text-xs font-extrabold text-[#2D2D2A]">Conta de energia em 3 dias</h4>
+            <p class="text-xs text-[#84828F] leading-relaxed mt-0.5">
+              Fatura da Enel de R$ 340,00 dividida entre 4. Sua cota é de R$ 85,00.
+            </p>
+            <div class="flex items-center gap-2 mt-3 pt-2 border-t border-gray-100">
+              <a href="16_detalhes_despesa.html" class="px-3 py-1.5 rounded-xl bg-[#5E2B97] text-white text-xs font-bold active:scale-95 transition-transform inline-block">
+                Ver detalhes
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Notificação 4: Tarefa Aprovada (Lida) -->
+      <div class="w-full bg-white border border-[#84828F]/15 rounded-2xl p-4 shadow-2xs opacity-75">
+        <div class="flex items-start gap-3">
+          <div class="w-10 h-10 rounded-xl bg-gray-100 text-[#84828F] flex items-center justify-center shrink-0">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="20 6 9 17 4 12"/>
+            </svg>
+          </div>
+          <div class="flex-1">
+            <div class="flex items-center justify-between mb-1">
+              <span class="px-2 py-0.5 rounded-full bg-gray-100 text-[#84828F] text-[9px] font-bold">Concluída</span>
+              <span class="text-[10px] text-[#84828F]">2 dias atrás</span>
+            </div>
+            <h4 class="text-xs font-extrabold text-[#2D2D2A]">Faxina da sala aprovada</h4>
+            <p class="text-xs text-[#84828F] leading-relaxed mt-0.5 flex items-center gap-1">
+              <span>Validada por Doutor Octopus. +120 XP e</span>
+              <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="#CC92C2" stroke-width="2.5" class="shrink-0"><circle cx="12" cy="12" r="9" fill="#CC92C2" fill-opacity="0.4"/><circle cx="12" cy="12" r="4.5"/></svg>
+              <span>+35 moedas creditadas.</span>
+            </p>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Barra Inferior de Navegação (Tab Bar) -->
+    <div class="w-full bg-white border-t border-[#84828F]/20 px-6 pt-3 pb-2 z-40">
+      <div class="flex justify-between items-center">
+        
+        <!-- Tab: Início -->
+        <a href="13_painel_principal.html" class="flex flex-col items-center gap-1 text-[#84828F] hover:text-[#5E2B97]">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/>
+            <polyline points="9 22 9 12 15 12 15 22"/>
+          </svg>
+          <span class="text-[10px] font-bold">Início</span>
+        </a>
+
+        <!-- Tab: Despesas -->
+        <a href="14_lista_despesas.html" class="flex flex-col items-center gap-1 text-[#84828F] hover:text-[#5E2B97]">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="12" y1="1" x2="12" y2="23"/>
+            <path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/>
+          </svg>
+          <span class="text-[10px] font-bold">Despesas</span>
+        </a>
+
+        <!-- Tab: Tarefas -->
+        <a href="20_quadro_tarefas.html" class="flex flex-col items-center gap-1 text-[#84828F] hover:text-[#5E2B97]">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="9 11 12 14 22 4"/>
+            <path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/>
+          </svg>
+          <span class="text-[10px] font-bold">Tarefas</span>
+        </a>
+
+        <!-- Tab: Ranking -->
+        <a href="24_ranking_moradores.html" class="flex flex-col items-center gap-1 text-[#84828F] hover:text-[#5E2B97]">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="8" r="7"/>
+            <polyline points="8.21 13.89 7 23 12 20 17 23 15.79 13.88"/>
+          </svg>
+          <span class="text-[10px] font-bold">Ranking</span>
+        </a>
+
+        <!-- Tab: Perfil -->
+        <a href="27_perfil_usuario.html" class="flex flex-col items-center gap-1 text-[#84828F] hover:text-[#5E2B97]">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"></path>
+            <circle cx="12" cy="7" r="4"></circle>
+          </svg>
+          <span class="text-[10px] font-bold">Perfil</span>
+        </a>
+
+      </div>
+
+      <div class="home-indicator"></div>
+    </div>
+
+  </div>
+
+  <script src="navigator.js"></script>
+</body>
+</html>

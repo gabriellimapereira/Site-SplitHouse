@@ -1,0 +1,463 @@
+<!DOCTYPE html>
+<html lang="pt-BR" class="h-full">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SplitHouse • Simulador & Central de Telas Interativas</title>
+  <script src="https://www.gstatic.com/antigravity/web/dev/tailwindcss.min.js"></script>
+  <style>
+    :root {
+      --primary-purple: #5E2B97;
+      --deep-purple: #3A1864;
+      --soft-white: #FCFCFC;
+      --dark-graphite: #1E1E22;
+      --accent-lilac: #CC92C2;
+      --rosy-granite: #84828F;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+      background-color: #0d0d11;
+      color: #FCFCFC;
+      overflow: hidden;
+    }
+
+    /* Moldura de Smartphone Ultra Realista */
+    .device-chassis {
+      width: 412px;
+      height: 872px;
+      background: #18181c;
+      border-radius: 54px;
+      padding: 11px;
+      position: relative;
+      box-shadow: 
+        0 0 0 1px rgba(255, 255, 255, 0.1),
+        0 25px 70px -10px rgba(0, 0, 0, 0.8),
+        0 0 40px rgba(94, 43, 151, 0.25);
+      transition: transform 0.25s ease;
+      transform-origin: top center;
+      flex-shrink: 0;
+    }
+
+    .device-screen-wrapper {
+      width: 100%;
+      height: 100%;
+      border-radius: 44px;
+      overflow: hidden;
+      background-color: #000;
+      position: relative;
+    }
+
+    .device-screen {
+      width: 390px;
+      height: 844px;
+      border: none;
+      display: block;
+      background-color: #fff;
+    }
+
+    /* Custom Scrollbar para a barra lateral */
+    .sidebar-scroll::-webkit-scrollbar {
+      width: 5px;
+    }
+    .sidebar-scroll::-webkit-scrollbar-track {
+      background: rgba(255, 255, 255, 0.02);
+    }
+    .sidebar-scroll::-webkit-scrollbar-thumb {
+      background: rgba(204, 146, 194, 0.2);
+      border-radius: 4px;
+    }
+    .sidebar-scroll::-webkit-scrollbar-thumb:hover {
+      background: rgba(94, 43, 151, 0.6);
+    }
+
+    /* Animação suave para seleção */
+    .screen-item.active {
+      background: linear-gradient(90deg, rgba(94, 43, 151, 0.35) 0%, rgba(94, 43, 151, 0.15) 100%);
+      border-left: 3px solid #CC92C2;
+    }
+  </style>
+</head>
+<body class="h-full flex flex-col antialiased select-none">
+
+  <!-- BARRA DE CONTROLE SUPERIOR (HEADER) -->
+  <header class="h-14 bg-[#141419] border-b border-white/10 px-4 flex items-center justify-between z-30 shrink-0">
+    
+    <!-- Lado Esquerdo: Logo e Seletor do Menu -->
+    <div class="flex items-center gap-3">
+      <button id="toggle-sidebar-btn" title="Ocultar/Exibir Lista de Telas" class="w-8 h-8 rounded-lg bg-white/5 hover:bg-white/10 flex items-center justify-center text-white/80 transition-colors">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <rect width="18" height="18" x="3" y="3" rx="2" ry="2"/>
+          <line x1="9" y1="3" x2="9" y2="21"/>
+        </svg>
+      </button>
+
+      <div class="flex items-center gap-2">
+        <div class="w-7 h-7 rounded-lg bg-[#5E2B97] flex items-center justify-center text-white shadow-sm shadow-[#5E2B97]/50">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/>
+            <path d="M12 2v20" stroke="#CC92C2" stroke-width="2" stroke-dasharray="2 2"/>
+          </svg>
+        </div>
+        <span class="font-extrabold text-base tracking-tight text-white">Split<span class="text-[#CC92C2]">House</span></span>
+        <span class="px-2 py-0.5 rounded-md bg-[#5E2B97]/20 border border-[#5E2B97]/40 text-[#CC92C2] text-[10px] font-bold uppercase tracking-wider ml-1">Protótipo Interativo</span>
+      </div>
+    </div>
+
+    <!-- Centro: Tela Atual & Controles Rápidos de Navegação -->
+    <div class="flex items-center gap-2">
+      <button id="prev-screen-btn" title="Tela Anterior (Seta ←)" class="h-8 px-3 rounded-lg bg-white/5 hover:bg-white/10 active:scale-95 text-white/90 text-xs font-semibold flex items-center gap-1.5 transition-all border border-white/10">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
+        <span class="hidden sm:inline">Anterior</span>
+      </button>
+
+      <!-- Badge da Tela Ativa -->
+      <div id="active-screen-badge" class="h-8 px-3 rounded-lg bg-[#5E2B97]/20 border border-[#5E2B97]/50 text-white flex items-center gap-2">
+        <span class="w-2 h-2 rounded-full bg-[#CC92C2] animate-pulse"></span>
+        <span id="active-screen-title" class="text-xs font-bold truncate max-w-[180px] md:max-w-[280px]">01 • Tela de Abertura</span>
+        <span id="active-screen-index" class="text-[10px] text-[#CC92C2] font-mono font-bold bg-[#5E2B97]/40 px-1.5 py-0.5 rounded">01/32</span>
+      </div>
+
+      <button id="next-screen-btn" title="Próxima Tela (Seta →)" class="h-8 px-3 rounded-lg bg-[#5E2B97] hover:bg-[#4d237d] active:scale-95 text-white text-xs font-semibold flex items-center gap-1.5 transition-all shadow-sm shadow-[#5E2B97]/40">
+        <span class="hidden sm:inline">Próxima</span>
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+      </button>
+    </div>
+
+    <!-- Lado Direito: Ações Extras (Zoom, Recarregar, Aba Avulsa) -->
+    <div class="flex items-center gap-2">
+      <!-- Seletor de Escala do Smartphone -->
+      <div class="flex items-center gap-1 bg-white/5 border border-white/10 rounded-lg p-0.5 text-xs">
+        <span class="text-[10px] text-white/50 pl-1.5 font-medium">Zoom:</span>
+        <select id="scale-selector" class="bg-transparent text-white/90 text-xs font-semibold outline-none py-1 pr-1 cursor-pointer">
+          <option value="1" class="bg-[#18181c]">100%</option>
+          <option value="0.9" selected class="bg-[#18181c]">90%</option>
+          <option value="0.82" class="bg-[#18181c]">82%</option>
+          <option value="0.75" class="bg-[#18181c]">75%</option>
+        </select>
+      </div>
+
+      <!-- Recarregar Tela Atual -->
+      <button id="reload-screen-btn" title="Reiniciar tela atual (R)" class="w-8 h-8 rounded-lg bg-white/5 hover:bg-white/10 flex items-center justify-center text-white/80 transition-colors border border-white/10">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M21 12a9 9 0 0 0-9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"/>
+          <path d="M3 3v5h5"/>
+          <path d="M3 12a9 9 0 0 0 9 9 9.75 9.75 0 0 0 6.74-2.74L21 16"/>
+          <path d="M16 21h5v-5"/>
+        </svg>
+      </button>
+
+      <!-- Abrir em aba avulsa -->
+      <a id="open-tab-btn" href="01_tela_abertura.html" target="_blank" title="Abrir esta tela em nova aba" class="w-8 h-8 rounded-lg bg-white/5 hover:bg-white/10 flex items-center justify-center text-white/80 transition-colors border border-white/10">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/>
+          <polyline points="15 3 21 3 21 9"/>
+          <line x1="10" y1="14" x2="21" y2="3"/>
+        </svg>
+      </a>
+    </div>
+
+  </header>
+
+  <!-- ÁREA PRINCIPAL: SIDEBAR + SIMULADOR -->
+  <div class="flex-1 flex overflow-hidden relative">
+
+    <!-- BARRA LATERAL (LISTA DE TODAS AS 32 TELAS) -->
+    <aside id="sidebar" class="w-80 bg-[#121217] border-r border-white/10 flex flex-col shrink-0 transition-all duration-300 z-20">
+      
+      <!-- Busca rápida -->
+      <div class="p-3 border-b border-white/10 bg-[#15151b]">
+        <div class="relative">
+          <svg class="absolute left-3 top-2.5 text-white/40" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+          <input 
+            type="text" 
+            id="screen-search" 
+            placeholder="Filtrar telas (ex: despesas, tarefas, qr)..." 
+            class="w-full pl-9 pr-3 py-1.5 bg-white/5 border border-white/10 rounded-lg text-xs text-white placeholder-white/40 focus:outline-none focus:border-[#CC92C2] focus:ring-1 focus:ring-[#CC92C2]/30"
+          />
+        </div>
+      </div>
+
+      <!-- Resumo do Fluxo -->
+      <div class="px-4 py-2 bg-white/[0.02] border-b border-white/5 flex items-center justify-between text-[11px] text-white/50">
+        <span>32 Telas Concluídas (01 a 32)</span>
+        <span class="text-[#CC92C2] font-semibold">100% em Português</span>
+      </div>
+
+      <!-- Lista Scrollável dos 6 Blocos -->
+      <div id="screens-list-container" class="flex-1 overflow-y-auto sidebar-scroll p-2 space-y-3">
+        <!-- Injetado dinamicamente via JS -->
+      </div>
+
+      <!-- Rodapé da Barra Lateral -->
+      <div class="p-3 border-t border-white/10 bg-[#101014] text-center text-[11px] text-white/40">
+        SplitHouse • PDSI2 • UFV/UFMG
+      </div>
+
+    </aside>
+
+    <!-- PALCO CENTRAL (SIMULADOR DO SMARTPHONE) -->
+    <main class="flex-1 bg-[#0b0b0e] flex flex-col items-center justify-start overflow-y-auto overflow-x-hidden p-4 relative">
+      
+      <!-- Fundo com iluminação atmosférica roxa sutil -->
+      <div class="absolute w-[600px] h-[600px] rounded-full bg-[#5E2B97]/15 filter blur-[140px] pointer-events-none top-10"></div>
+
+      <!-- Container escalável do aparelho -->
+      <div id="device-container" class="my-auto py-2 transition-transform duration-200">
+        
+        <div class="device-chassis" id="device-chassis">
+          <div class="device-screen-wrapper">
+            <iframe 
+              id="app-simulator-iframe" 
+              src="01_tela_abertura.html" 
+              class="device-screen"
+              title="SplitHouse Simulator"
+            ></iframe>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Dica Rápida de Apresentação no Rodapé -->
+      <div class="mt-4 mb-2 flex items-center gap-3 text-xs text-white/40 font-medium z-10">
+        <span class="flex items-center gap-1"><kbd class="px-1.5 py-0.5 rounded bg-white/10 border border-white/15 text-[10px] text-white/70">←</kbd> <kbd class="px-1.5 py-0.5 rounded bg-white/10 border border-white/15 text-[10px] text-white/70">→</kbd> Navegar telas</span>
+        <span>•</span>
+        <span class="flex items-center gap-1"><kbd class="px-1.5 py-0.5 rounded bg-white/10 border border-white/15 text-[10px] text-white/70">R</kbd> Reiniciar tela</span>
+        <span>•</span>
+        <span>Você pode navegar clicando diretamente dentro do celular</span>
+      </div>
+
+    </main>
+
+  </div>
+
+  <!-- SCRIPT DO SIMULADOR E GERENCIADOR DE TELAS -->
+  <script>
+    const SCREENS_DATA = [
+      {
+        block: "Bloco 1: Abertura e Autenticação",
+        screens: [
+          { file: "01_tela_abertura.html", num: "01", name: "Tela de Abertura (Splash)", desc: "Logotipo centralizado, frase de valor e carregamento suave." },
+          { file: "02_boas_vindas.html", num: "02", name: "Boas-Vindas", desc: "Apresentação da marca, cards explicativos e botões de acesso." },
+          { file: "03_login.html", num: "03", name: "Login", desc: "Autenticação por e-mail/senha com atalho para Google e recuperação." },
+          { file: "04_cadastro.html", num: "04", name: "Cadastro de Usuário", desc: "Formulário de criação de conta e aceite de termos de uso." },
+          { file: "05_recuperar_senha.html", num: "05", name: "Recuperação de Senha", desc: "Envio de instruções e link para redefinição de acesso." }
+        ]
+      },
+      {
+        block: "Bloco 2: Onboarding e Gestão do Imóvel",
+        screens: [
+          { file: "06_selecao_casa.html", num: "06", name: "Seleção de Imóvel", desc: "Escolha entre criar uma nova moradia ou entrar em uma existente." },
+          { file: "07_cadastrar_casa.html", num: "07", name: "Cadastrar Moradia", desc: "Passo 1: Nome da casa, endereço e quantidade de moradores." },
+          { file: "08_configurar_regras_casa.html", num: "08", name: "Regras Iniciais da Casa", desc: "Passo 2: Definição prévia das regras de convivência da moradia." },
+          { file: "09_convite_qr_casa.html", num: "09", name: "QR Code de Convite", desc: "Código alfanumérico e QR Code para compartilhar com novos colegas." },
+          { file: "10_escanear_entrar_casa.html", num: "10", name: "Escanear / Digitar Código", desc: "Leitor de QR Code estático e digitação manual de convite." },
+          { file: "11_solicitacao_pendente.html", num: "11", name: "Solicitação Pendente", desc: "Feedback de aguardando aprovação pelo administrador." },
+          { file: "12_gerenciar_moradores.html", num: "12", name: "Gerenciar Moradores", desc: "Aprovação de solicitações pendentes e gestão dos membros ativos." }
+        ]
+      },
+      {
+        block: "Bloco 3: Dashboard Principal",
+        screens: [
+          { file: "13_painel_principal.html", num: "13", name: "Painel Principal (Home)", desc: "Visão geral da república, saldo, tarefas do dia e atalhos rápidos." }
+        ]
+      },
+      {
+        block: "Bloco 4: Gestão Financeira e Rateios",
+        screens: [
+          { file: "14_lista_despesas.html", num: "14", name: "Lista de Despesas", desc: "Listagem cronológica com filtros por status e situação de rateio." },
+          { file: "15_cadastrar_despesa.html", num: "15", name: "Cadastrar Nova Despesa", desc: "Formulário de rateio coletivo com foto do comprovante." },
+          { file: "16_detalhes_despesa.html", num: "16", name: "Detalhes da Despesa", desc: "Quadro de quem já pagou e cutucada amigável para pendentes." },
+          { file: "17_acerto_contas.html", num: "17", name: "Acerto de Contas", desc: "Painel consolidado de débitos bilaterais (quem deve a quem)." },
+          { file: "18_confirmar_pagamento.html", num: "18", name: "Confirmar Pagamento", desc: "Validação do credor para confirmar recebimento e quitar saldo." },
+          { file: "19_relatorios_financeiros.html", num: "19", name: "Relatórios Financeiros", desc: "Gráficos de evolução de despesas por categoria e morador." }
+        ]
+      },
+      {
+        block: "Bloco 5: Tarefas e Validação por Pares",
+        screens: [
+          { file: "20_quadro_tarefas.html", num: "20", name: "Quadro de Tarefas", desc: "Escalas da casa, minhas tarefas do dia e prazos de conclusão." },
+          { file: "21_cadastrar_tarefa.html", num: "21", name: "Cadastrar Tarefa", desc: "Criação de tarefa com escala rotativa, responsável e pontos/XP." },
+          { file: "22_detalhes_tarefa.html", num: "22", name: "Detalhes da Tarefa", desc: "Submeter execução anexando foto de comprovação da execução." },
+          { file: "23_validacao_tarefa.html", num: "23", name: "Validação por Pares", desc: "Outro morador avalia e aprova a foto da tarefa executada." }
+        ]
+      },
+      {
+        block: "Bloco 6: Gamificação, Loja e Perfil",
+        screens: [
+          { file: "24_ranking_moradores.html", num: "24", name: "Ranking dos Moradores", desc: "Classificação por XP do ciclo, medalhas e envio de Cutucada." },
+          { file: "25_loja_casa.html", num: "25", name: "Loja da Casa", desc: "Catálogo de folgas e benefícios resgatáveis com moedas ganhas." },
+          { file: "26_notificacoes.html", num: "26", name: "Central de Notificações", desc: "Histórico de alertas de contas, tarefas e avisos da residência." },
+          { file: "27_perfil_usuario.html", num: "27", name: "Perfil do Morador", desc: "Estatísticas pessoais, nível, extrato de XP e menu de configurações." },
+          { file: "28_propor_recompensa.html", num: "28", name: "Propor Recompensa", desc: "Formulário para propor novo privilégio na Loja da Casa." },
+          { file: "29_editar_perfil.html", num: "29", name: "Editar Perfil", desc: "Atualização de avatar, nome de exibição, chave Pix e senha." },
+          { file: "30_regras_convivencia.html", num: "30", name: "Regras de Convivência", desc: "Estatuto ativo da moradia para consulta de todos os residentes." },
+          { file: "31_editar_regras_convivencia.html", num: "31", name: "Editar Regras da Moradia", desc: "Formulário de alteração de normas pelo administrador." },
+          { file: "32_desvincular_casa.html", num: "32", name: "Desvincular da Moradia", desc: "Checagem de dívidas e saída segura da república com senha." }
+        ]
+      }
+    ];
+
+    // Lista plana de todas as telas
+    const FLAT_SCREENS = [];
+    SCREENS_DATA.forEach(b => {
+      b.screens.forEach(s => {
+        FLAT_SCREENS.push({ ...s, blockName: b.block });
+      });
+    });
+
+    let currentScreenIndex = 0;
+    const iframe = document.getElementById('app-simulator-iframe');
+    const activeBadgeTitle = document.getElementById('active-screen-title');
+    const activeBadgeIndex = document.getElementById('active-screen-index');
+    const openTabBtn = document.getElementById('open-tab-btn');
+    const deviceChassis = document.getElementById('device-chassis');
+    const scaleSelector = document.getElementById('scale-selector');
+    const sidebar = document.getElementById('sidebar');
+    const toggleSidebarBtn = document.getElementById('toggle-sidebar-btn');
+    const searchInput = document.getElementById('screen-search');
+
+    // Renderizar a lista de telas na barra lateral
+    function renderSidebar() {
+      const container = document.getElementById('screens-list-container');
+      container.innerHTML = '';
+
+      SCREENS_DATA.forEach((block, bIdx) => {
+        const blockWrapper = document.createElement('div');
+        blockWrapper.className = 'block-section';
+
+        const blockHeader = document.createElement('div');
+        blockHeader.className = 'px-2.5 py-1.5 text-[11px] font-bold text-white/50 uppercase tracking-wider flex items-center justify-between cursor-pointer hover:text-white/80';
+        blockHeader.innerHTML = `
+          <span class="truncate">${block.block}</span>
+          <span class="text-[10px] text-white/40">${block.screens.length}</span>
+        `;
+
+        const screensList = document.createElement('div');
+        screensList.className = 'space-y-1 mt-1';
+
+        block.screens.forEach(scr => {
+          const flatIdx = FLAT_SCREENS.findIndex(s => s.file === scr.file);
+          const item = document.createElement('div');
+          item.id = `sidebar-item-${scr.file}`;
+          item.className = `screen-item p-2 rounded-xl cursor-pointer transition-all hover:bg-white/5 border border-transparent text-left flex items-start gap-2.5 ${flatIdx === currentScreenIndex ? 'active' : ''}`;
+          item.innerHTML = `
+            <span class="w-6 h-6 rounded-lg bg-white/10 text-[#CC92C2] text-xs font-mono font-bold flex items-center justify-center shrink-0 mt-0.5">
+              ${scr.num}
+            </span>
+            <div class="flex-1 min-w-0">
+              <h4 class="text-xs font-bold text-white/95 truncate leading-tight">${scr.name}</h4>
+              <p class="text-[10px] text-white/50 truncate mt-0.5">${scr.desc}</p>
+            </div>
+          `;
+
+          item.onclick = () => {
+            loadScreen(flatIdx);
+          };
+
+          screensList.appendChild(item);
+        });
+
+        blockWrapper.appendChild(blockHeader);
+        blockWrapper.appendChild(screensList);
+        container.appendChild(blockWrapper);
+      });
+    }
+
+    // Carregar tela no iframe
+    function loadScreen(index) {
+      if (index < 0 || index >= FLAT_SCREENS.length) return;
+      currentScreenIndex = index;
+      const target = FLAT_SCREENS[currentScreenIndex];
+      iframe.src = target.file;
+      updateUIState();
+    }
+
+    function updateUIState() {
+      const target = FLAT_SCREENS[currentScreenIndex];
+      activeBadgeTitle.textContent = `${target.num} • ${target.name}`;
+      activeBadgeIndex.textContent = `${target.num}/${String(FLAT_SCREENS.length).padStart(2, '0')}`;
+      openTabBtn.href = target.file;
+
+      // Atualizar destaque na sidebar
+      document.querySelectorAll('.screen-item').forEach(el => el.classList.remove('active'));
+      const activeEl = document.getElementById(`sidebar-item-${target.file}`);
+      if (activeEl) {
+        activeEl.classList.add('active');
+        activeEl.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+      }
+
+      // Estado dos botões anterior/próxima
+      document.getElementById('prev-screen-btn').disabled = (currentScreenIndex === 0);
+      document.getElementById('next-screen-btn').disabled = (currentScreenIndex === FLAT_SCREENS.length - 1);
+    }
+
+    // Escutar mensagens vindas de dentro do iframe (quando o usuário clica nos botões do app)
+    window.addEventListener('message', (event) => {
+      if (event.data && event.data.type === 'SPLITHOUSE_SCREEN_CHANGE') {
+        const foundIdx = FLAT_SCREENS.findIndex(s => s.file === event.data.file);
+        if (foundIdx >= 0 && foundIdx !== currentScreenIndex) {
+          currentScreenIndex = foundIdx;
+          updateUIState();
+        }
+      }
+    });
+
+    // Controles Header
+    document.getElementById('prev-screen-btn').onclick = () => {
+      if (currentScreenIndex > 0) loadScreen(currentScreenIndex - 1);
+    };
+
+    document.getElementById('next-screen-btn').onclick = () => {
+      if (currentScreenIndex < FLAT_SCREENS.length - 1) loadScreen(currentScreenIndex + 1);
+    };
+
+    document.getElementById('reload-screen-btn').onclick = () => {
+      iframe.src = FLAT_SCREENS[currentScreenIndex].file;
+    };
+
+    // Zoom / Escala do smartphone
+    scaleSelector.onchange = (e) => {
+      const scale = parseFloat(e.target.value);
+      deviceChassis.style.transform = `scale(${scale})`;
+    };
+    deviceChassis.style.transform = `scale(0.9)`;
+
+    // Alternar Barra Lateral
+    toggleSidebarBtn.onclick = () => {
+      sidebar.classList.toggle('-ml-80');
+    };
+
+    // Filtro de busca na barra lateral
+    searchInput.oninput = (e) => {
+      const term = e.target.value.toLowerCase().trim();
+      document.querySelectorAll('.screen-item').forEach(item => {
+        const text = item.textContent.toLowerCase();
+        if (text.includes(term)) {
+          item.style.display = 'flex';
+        } else {
+          item.style.display = 'none';
+        }
+      });
+    };
+
+    // Atalhos de teclado no cockpit
+    window.addEventListener('keydown', (e) => {
+      if (['INPUT', 'TEXTAREA', 'SELECT'].includes(e.target.tagName)) return;
+
+      if (e.key === 'ArrowLeft') {
+        if (currentScreenIndex > 0) loadScreen(currentScreenIndex - 1);
+      } else if (e.key === 'ArrowRight') {
+        if (currentScreenIndex < FLAT_SCREENS.length - 1) loadScreen(currentScreenIndex + 1);
+      } else if (e.key === 'r' || e.key === 'R') {
+        iframe.src = FLAT_SCREENS[currentScreenIndex].file;
+      }
+    });
+
+    // Inicialização
+    renderSidebar();
+    updateUIState();
+  </script>
+
+</body>
+</html>

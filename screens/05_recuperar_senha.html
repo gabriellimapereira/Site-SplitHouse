@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SplitHouse - 04 Recuperação de Senha</title>
+  <script src="https://www.gstatic.com/antigravity/web/dev/tailwindcss.min.js"></script>
+  <style>
+    :root {
+      --primary-purple: #5E2B97;   /* Roxo principal */
+      --soft-white: #FCFCFC;       /* Fundo e contraste limpo */
+      --dark-graphite: #2D2D2A;    /* Textos principais e títulos */
+      --accent-lilac: #CC92C2;     /* Lilás/rosa para detalhes e links */
+      --rosy-granite: #84828F;     /* Cinza rosado para placeholders, bordas e ícones */
+    }
+
+        html, body {
+      width: 390px;
+      height: 844px;
+      margin: 0;
+      padding: 0;
+      overflow: hidden;
+      background-color: transparent;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    }
+
+    /* Dimensões padronizadas mobile (390 x 844 px) */
+    .mobile-frame {
+      width: 390px;
+      height: 844px;
+      background-color: #FCFCFC;
+      border-radius: 48px;
+      position: relative;
+      overflow: hidden;
+      box-shadow: none;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      user-select: none;
+    }
+
+    /* Entalhe superior da câmera (Dynamic Island padrão) */
+    .dynamic-island {
+      width: 96px;
+      height: 24px;
+      background-color: #000;
+      border-radius: 20px;
+      position: absolute;
+      left: 50%;
+      top: 10px;
+      transform: translateX(-50%);
+      z-index: 50;
+    }
+
+    /* Brilho decorativo sutil */
+    .purple-glow-top {
+      position: absolute;
+      width: 340px;
+      height: 340px;
+      top: -120px;
+      right: -100px;
+      background: radial-gradient(circle, rgba(94, 43, 151, 0.10) 0%, rgba(204, 146, 194, 0.08) 50%, transparent 70%);
+      border-radius: 50%;
+      pointer-events: none;
+    }
+
+    .home-indicator {
+      width: 134px;
+      height: 5px;
+      background-color: #2D2D2A;
+      border-radius: 100px;
+      margin: 8px auto 12px auto;
+      opacity: 0.25;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- FRAME MOBILE RECUPERAÇÃO DE SENHA -->
+  <div class="mobile-frame" id="splithouse-screen-04">
+    
+    <div class="purple-glow-top"></div>
+
+    <!-- Barra de Status Mobile -->
+    <div class="w-full pt-3 px-8 flex justify-between items-center z-40 text-xs font-semibold text-[#2D2D2A] relative">
+      <span class="tracking-tight pl-1">9:41</span>
+      <div class="dynamic-island"></div>
+      <div class="flex items-center gap-1.5 text-[#2D2D2A] pr-1">
+        <!-- Ícone Sinal -->
+        <svg width="15" height="11" viewBox="0 0 17 12" fill="currentColor">
+          <path d="M1 9h2.5v3H1V9zm4-3h2.5v6H5V6zm4-3h2.5v9H9V3zm4-3h2.5v12H13V0z"/>
+        </svg>
+        <!-- Ícone Wi-Fi -->
+        <svg width="14" height="11" viewBox="0 0 16 12" fill="currentColor">
+          <path d="M8 9.5a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3zm-4.2-3a5.9 5.9 0 0 1 8.4 0l-1.4 1.4a3.9 3.9 0 0 0-5.6 0L3.8 6.5zM1 3.7a9.9 9.9 0 0 1 14 0l-1.4 1.4a7.9 7.9 0 0 0-11.2 0L1 3.7z"/>
+        </svg>
+        <!-- Ícone Bateria -->
+        <div class="w-5 h-2.5 border border-[#2D2D2A] rounded-sm p-0.5 flex items-center">
+          <div class="h-full w-3/4 bg-[#2D2D2A] rounded-2xs"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Barra de Ação Superior (Botão Voltar) -->
+    <div class="w-full px-6 pt-3 pb-1 z-30 flex items-center">
+      <a href="03_login.html" class="w-10 h-10 rounded-xl bg-white border border-[#84828F]/25 flex items-center justify-center text-[#2D2D2A] shadow-xs active:scale-95 transition-transform hover:border-[#5E2B97]/40"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"></polyline></svg></a>
+    </div>
+
+    <!-- Área Principal de Conteúdo -->
+    <div class="flex-1 px-8 pt-4 pb-6 z-30 flex flex-col justify-center">
+      
+      <!-- Ícone Ilustrativo Centralizado com a paleta -->
+      <div class="w-20 h-20 mx-auto rounded-3xl bg-[#5E2B97]/10 border border-[#CC92C2]/35 flex items-center justify-center text-[#5E2B97] mb-6 shadow-sm">
+        <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <rect width="18" height="11" x="3" y="11" rx="2" ry="2"></rect>
+          <path d="M7 11V7a5 5 0 0 1 9.9-1"></path>
+          <circle cx="12" cy="16" r="1.5"></circle>
+          <path d="m15 5 4 4"></path>
+          <path d="m19 5-4 4"></path>
+        </svg>
+      </div>
+
+      <!-- Textos de Cabeçalho -->
+      <div class="text-center mb-8">
+        <h2 class="text-2xl font-extrabold text-[#2D2D2A] tracking-tight mb-2">
+          Esqueceu sua senha?
+        </h2>
+        <p class="text-sm font-normal text-[#84828F] leading-relaxed max-w-[280px] mx-auto">
+          Não se preocupe! Digite seu e-mail cadastrado e enviaremos as instruções para redefinição.
+        </p>
+      </div>
+
+      <!-- Formulário de Recuperação -->
+      <form class="flex flex-col gap-4">
+        
+        <!-- Campo: E-mail -->
+        <div class="flex flex-col gap-1.5">
+          <label class="text-xs font-bold text-[#2D2D2A]">E-mail cadastrado</label>
+          <div class="relative flex items-center">
+            <span class="absolute left-4 text-[#84828F]">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <rect width="20" height="16" x="2" y="4" rx="2"></rect>
+                <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"></path>
+              </svg>
+            </span>
+            <input 
+              type="email" 
+              placeholder="Digite seu e-mail cadastrado" 
+              class="w-full pl-11 pr-4 py-3.5 bg-white border border-[#84828F]/30 rounded-2xl text-sm font-medium text-[#2D2D2A] focus:outline-none focus:border-[#5E2B97] focus:ring-2 focus:ring-[#5E2B97]/15 shadow-2xs"
+            />
+          </div>
+        </div>
+
+        <!-- Botão de Envio (Foco Roxo) -->
+        <button type="button" onclick="alert(\'Instruções de recuperação enviadas com sucesso para seu e-mail!\'); window.location.href=\'03_login.html\';" class="w-full mt-2 py-4 rounded-2xl bg-[#5E2B97] hover:bg-[#4d237d] active:scale-[0.98] transition-all duration-150 text-[#FCFCFC] font-bold text-base shadow-lg shadow-[#5E2B97]/25 flex items-center justify-center gap-2 cursor-pointer">
+          <span>Enviar instruções</span>
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="22" y1="2" x2="11" y2="13"></line>
+            <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
+          </svg>
+        </button>
+
+      </form>
+
+      <!-- Dica de Suporte / Segurança -->
+      <div class="mt-8 p-3.5 bg-[#5E2B97]/5 border border-[#84828F]/20 rounded-2xl flex items-start gap-3">
+        <span class="text-[#5E2B97] mt-0.5">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="10"></circle>
+            <line x1="12" y1="16" x2="12" y2="12"></line>
+            <line x1="12" y1="8" x2="12.01" y2="8"></line>
+          </svg>
+        </span>
+        <p class="text-[11px] text-[#84828F] leading-snug">
+          Verifique sua caixa de entrada e pasta de spam após o envio do link.
+        </p>
+      </div>
+
+    </div>
+
+    <!-- Rodapé: Voltar ao Login -->
+    <div class="w-full px-8 pb-3 z-30 flex flex-col items-center">
+      <a href="03_login.html" class="inline-flex items-center gap-1.5 text-xs font-bold text-[#5E2B97] hover:text-[#4d237d] transition-colors mb-2">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+          <line x1="19" y1="12" x2="5" y2="12"></line>
+          <polyline points="12 19 5 12 12 5"></polyline>
+        </svg>
+        <span>Voltar para o Login</span>
+      </a>
+
+      <div class="home-indicator"></div>
+    </div>
+
+  </div>
+
+  <script src="navigator.js"></script>
+</body>
+</html>

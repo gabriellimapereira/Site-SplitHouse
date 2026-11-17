@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SplitHouse - 30 Desvincular da República</title>
+  <script src="https://www.gstatic.com/antigravity/web/dev/tailwindcss.min.js"></script>
+  <style>
+    :root {
+      --primary-purple: #5E2B97;   /* Roxo principal */
+      --soft-white: #FCFCFC;       /* Fundo e contraste limpo */
+      --dark-graphite: #2D2D2A;    /* Textos principais e títulos */
+      --accent-lilac: #CC92C2;     /* Lilás/rosa para detalhes e destaques */
+      --rosy-granite: #84828F;     /* Cinza rosado para bordas e subtítulos */
+    }
+
+        html, body {
+      width: 390px;
+      height: 844px;
+      margin: 0;
+      padding: 0;
+      overflow: hidden;
+      background-color: transparent;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    }
+
+    /* Dimensões padronizadas mobile (390 x 844 px) */
+    .mobile-frame {
+      width: 390px;
+      height: 844px;
+      background-color: #FCFCFC;
+      border-radius: 48px;
+      position: relative;
+      overflow: hidden;
+      box-shadow: none;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      user-select: none;
+    }
+
+    /* Entalhe superior da câmera */
+    .dynamic-island {
+      width: 96px;
+      height: 24px;
+      background-color: #000;
+      border-radius: 20px;
+      position: absolute;
+      left: 50%;
+      top: 10px;
+      transform: translateX(-50%);
+      z-index: 50;
+    }
+
+    .purple-glow-top {
+      position: absolute;
+      width: 340px;
+      height: 340px;
+      top: -120px;
+      right: -100px;
+      background: radial-gradient(circle, rgba(94, 43, 151, 0.10) 0%, rgba(204, 146, 194, 0.08) 50%, transparent 70%);
+      border-radius: 50%;
+      pointer-events: none;
+    }
+
+    .home-indicator {
+      width: 134px;
+      height: 5px;
+      background-color: #2D2D2A;
+      border-radius: 100px;
+      margin: 6px auto 8px auto;
+      opacity: 0.25;
+    }
+
+    .no-scrollbar::-webkit-scrollbar {
+      display: none;
+    }
+    .no-scrollbar {
+      -ms-overflow-style: none;
+      scrollbar-width: none;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- FRAME MOBILE DESVINCULAR DA REPÚBLICA (TELA 30) -->
+  <div class="mobile-frame" id="splithouse-screen-30">
+    
+    <div class="purple-glow-top"></div>
+
+    <!-- Barra de Status Mobile Padronizada -->
+    <div class="w-full pt-3 px-8 flex justify-between items-center z-40 text-xs font-semibold text-[#2D2D2A] relative">
+      <span class="tracking-tight pl-1">9:41</span>
+      <div class="dynamic-island"></div>
+      <div class="flex items-center gap-1.5 text-[#2D2D2A] pr-1">
+        <svg width="15" height="11" viewBox="0 0 17 12" fill="currentColor"><path d="M1 9h2.5v3H1V9zm4-3h2.5v6H5V6zm4-3h2.5v9H9V3zm4-3h2.5v12H13V0z"/></svg>
+        <svg width="14" height="11" viewBox="0 0 16 12" fill="currentColor"><path d="M8 9.5a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3zm-4.2-3a5.9 5.9 0 0 1 8.4 0l-1.4 1.4a3.9 3.9 0 0 0-5.6 0L3.8 6.5zM1 3.7a9.9 9.9 0 0 1 14 0l-1.4 1.4a7.9 7.9 0 0 0-11.2 0L1 3.7z"/></svg>
+        <div class="w-5 h-2.5 border border-[#2D2D2A] rounded-sm p-0.5 flex items-center">
+          <div class="h-full w-3/4 bg-[#2D2D2A] rounded-2xs"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Barra Superior: Voltar e Título -->
+    <div class="w-full px-7 pt-7 pb-2 z-30 flex items-center justify-between">
+      <a href="27_perfil_usuario.html" class="w-10 h-10 rounded-xl bg-white border border-[#84828F]/25 flex items-center justify-center text-[#2D2D2A] hover:border-[#5E2B97]/40 active:scale-95 transition-all">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+          <polyline points="15 18 9 12 15 6"/>
+        </svg>
+      </a>
+
+      <h3 class="text-sm font-extrabold text-red-600">Desvinculação</h3>
+
+      <div class="w-10"></div>
+    </div>
+
+    <!-- Conteúdo Scrollável -->
+    <div class="flex-1 px-7 pt-1 pb-3 z-30 overflow-y-auto no-scrollbar flex flex-col gap-3.5">
+
+      <div>
+        <h2 class="text-xl font-extrabold text-[#2D2D2A] tracking-tight">Sair da república</h2>
+        <p class="text-xs font-normal text-[#84828F] mt-0.5">
+          Você deixará de fazer parte da <strong>República do Sexteto Sinistro</strong>.
+        </p>
+      </div>
+
+      <!-- 1. Checagem Financeira -->
+      <div class="bg-white border border-[#84828F]/20 rounded-2xl p-4 shadow-2xs flex flex-col gap-2">
+        <div class="flex items-center justify-between">
+          <span class="text-[11px] font-bold text-[#84828F] uppercase tracking-wider">Situação Financeira</span>
+          <span class="px-2 py-0.5 rounded-full bg-emerald-50 text-emerald-700 text-[10px] font-bold border border-emerald-200">
+            Quitado
+          </span>
+        </div>
+        <p class="text-xs text-[#2D2D2A] leading-relaxed">
+          Você não possui dívidas em aberto. Seu saldo atual é de <strong class="text-emerald-700">+R$ 95,00 a receber</strong>.
+        </p>
+      </div>
+
+      <!-- 2. Sucessão de Administrador (Obrigatório para Norman Osborn) -->
+      <div class="bg-white border-2 border-[#5E2B97]/30 rounded-2xl p-4 shadow-2xs flex flex-col gap-3">
+        <div>
+          <div class="flex items-center gap-1.5 mb-1">
+            <span class="px-2 py-0.5 rounded-full bg-[#5E2B97] text-white text-[9px] font-bold">Admin</span>
+            <span class="text-xs font-extrabold text-[#2D2D2A]">Indicar Novo Administrador</span>
+          </div>
+          <p class="text-[11px] text-[#84828F] leading-tight">
+            Como administrador atual, escolha quem assumirá a gestão da moradia:
+          </p>
+        </div>
+
+        <!-- Seletor de Integrantes -->
+        <div class="flex flex-col gap-2">
+          
+          <!-- Opção 1: Dr. Octopus (Selecionado) -->
+          <label class="p-2.5 rounded-xl border-2 border-[#5E2B97] bg-[#5E2B97]/5 flex items-center justify-between cursor-pointer">
+            <div class="flex items-center gap-2.5">
+              <div class="w-8 h-8 rounded-lg bg-[#2D2D2A] text-white font-extrabold text-xs flex items-center justify-center">
+                DO
+              </div>
+              <div>
+                <span class="text-xs font-bold text-[#2D2D2A] block">Doutor Octopus</span>
+                <span class="text-[10px] text-[#84828F]">Nível 4 • 15 tarefas feitas</span>
+              </div>
+            </div>
+            <div class="w-4 h-4 rounded-full border-2 border-[#5E2B97] flex items-center justify-center">
+              <div class="w-2 h-2 rounded-full bg-[#5E2B97]"></div>
+            </div>
+          </label>
+
+          <!-- Opção 2: Lagarto -->
+          <label class="p-2.5 rounded-xl border border-[#84828F]/25 bg-white flex items-center justify-between cursor-pointer">
+            <div class="flex items-center gap-2.5">
+              <div class="w-8 h-8 rounded-lg bg-[#CC92C2]/30 text-[#2D2D2A] font-extrabold text-xs flex items-center justify-center">
+                LG
+              </div>
+              <div>
+                <span class="text-xs font-bold text-[#2D2D2A] block">Lagarto</span>
+                <span class="text-[10px] text-[#84828F]">Nível 3 • 11 tarefas feitas</span>
+              </div>
+            </div>
+            <div class="w-4 h-4 rounded-full border border-[#84828F]/30"></div>
+          </label>
+
+          <!-- Opção 3: Homem-Areia -->
+          <label class="p-2.5 rounded-xl border border-[#84828F]/25 bg-white flex items-center justify-between cursor-pointer">
+            <div class="flex items-center gap-2.5">
+              <div class="w-8 h-8 rounded-lg bg-gray-100 text-[#2D2D2A] font-extrabold text-xs flex items-center justify-center">
+                HA
+              </div>
+              <div>
+                <span class="text-xs font-bold text-[#2D2D2A] block">Homem-Areia</span>
+                <span class="text-[10px] text-[#84828F]">Nível 2 • 7 tarefas feitas</span>
+              </div>
+            </div>
+            <div class="w-4 h-4 rounded-full border border-[#84828F]/30"></div>
+          </label>
+
+        </div>
+
+        <!-- Aviso da RN de Aceite -->
+        <div class="bg-amber-50 border border-amber-200/60 rounded-xl p-2.5 flex items-start gap-2">
+          <svg class="text-amber-700 mt-0.5 shrink-0" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="10"/>
+            <line x1="12" y1="8" x2="12" y2="12"/>
+            <line x1="12" y1="16" x2="12.01" y2="16"/>
+          </svg>
+          <p class="text-[10px] text-amber-900 leading-tight font-medium">
+            O indicado receberá uma solicitação de posse. A troca de administração e sua desvinculação só ocorrerão após o aceite dele.
+          </p>
+        </div>
+      </div>
+
+      <!-- 3. Confirmação por Credencial -->
+      <div class="bg-white border border-[#84828F]/20 rounded-2xl p-4 shadow-2xs flex flex-col gap-2">
+        <label class="text-[11px] font-bold text-[#2D2D2A] uppercase tracking-wider block">Confirmação por Senha</label>
+        <input 
+          type="password" 
+          placeholder="Digite sua senha de acesso" 
+          value="••••••••••••"
+          class="w-full text-xs font-medium text-[#2D2D2A] border border-[#84828F]/20 rounded-xl p-3 focus:outline-none focus:border-red-500 tracking-widest"
+        />
+        <p class="text-[10px] text-[#84828F]">Confirme suas credenciais para autorizar a transferência de posse.</p>
+      </div>
+
+    </div>
+
+    <!-- Ações Inferiores -->
+    <div class="w-full px-7 pt-2 pb-2 z-40 bg-white/90 backdrop-blur-md border-t border-[#84828F]/20 flex flex-col gap-2">
+      <a href="02_boas_vindas.html" class="w-full py-3.5 rounded-2xl bg-red-600 text-white text-sm font-extrabold flex items-center justify-center gap-2 shadow-md shadow-red-600/20 active:scale-[0.98] transition-transform">
+        <span>Solicitar transferência e sair</span>
+      </a>
+      <a href="27_perfil_usuario.html" class="w-full py-2 text-center text-xs font-bold text-[#84828F] hover:text-[#2D2D2A]">
+        Cancelar e permanecer na república
+      </a>
+      <div class="home-indicator"></div>
+    </div>
+
+  </div>
+
+  <script src="navigator.js"></script>
+</body>
+</html>

@@ -1,0 +1,11 @@
+{
+  "name": "splithouse-landing-page",
+  "version": "1.0.0",
+  "description": "Landing page interativa e servidor local do SplitHouse com download do APK",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "author": "SplitHouse Team",
+  "license": "MIT"
+}

@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SplitHouse - 22 Ranking da República</title>
+  <script src="https://www.gstatic.com/antigravity/web/dev/tailwindcss.min.js"></script>
+  <style>
+    :root {
+      --primary-purple: #5E2B97;   /* Roxo principal */
+      --soft-white: #FCFCFC;       /* Fundo e contraste limpo */
+      --dark-graphite: #2D2D2A;    /* Textos principais e títulos */
+      --accent-lilac: #CC92C2;     /* Lilás/rosa para detalhes e destaques */
+      --rosy-granite: #84828F;     /* Cinza rosado para bordas e subtítulos */
+    }
+
+        html, body {
+      width: 390px;
+      height: 844px;
+      margin: 0;
+      padding: 0;
+      overflow: hidden;
+      background-color: transparent;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    }
+
+    /* Dimensões padronizadas mobile (390 x 844 px) */
+    .mobile-frame {
+      width: 390px;
+      height: 844px;
+      background-color: #FCFCFC;
+      border-radius: 48px;
+      position: relative;
+      overflow: hidden;
+      box-shadow: none;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      user-select: none;
+    }
+
+    /* Entalhe superior da câmera */
+    .dynamic-island {
+      width: 96px;
+      height: 24px;
+      background-color: #000;
+      border-radius: 20px;
+      position: absolute;
+      left: 50%;
+      top: 10px;
+      transform: translateX(-50%);
+      z-index: 50;
+    }
+
+    .purple-glow-top {
+      position: absolute;
+      width: 340px;
+      height: 340px;
+      top: -120px;
+      right: -100px;
+      background: radial-gradient(circle, rgba(94, 43, 151, 0.10) 0%, rgba(204, 146, 194, 0.08) 50%, transparent 70%);
+      border-radius: 50%;
+      pointer-events: none;
+    }
+
+    .home-indicator {
+      width: 134px;
+      height: 5px;
+      background-color: #2D2D2A;
+      border-radius: 100px;
+      margin: 6px auto 8px auto;
+      opacity: 0.25;
+    }
+
+    .no-scrollbar::-webkit-scrollbar {
+      display: none;
+    }
+    .no-scrollbar {
+      -ms-overflow-style: none;
+      scrollbar-width: none;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- FRAME MOBILE RANKING (TELA 22 - RF-09, RF-10) -->
+  <div class="mobile-frame" id="splithouse-screen-22">
+    
+    <div class="purple-glow-top"></div>
+
+    <!-- Barra de Status Mobile Padronizada -->
+    <div class="w-full pt-3 px-8 flex justify-between items-center z-40 text-xs font-semibold text-[#2D2D2A] relative">
+      <span class="tracking-tight pl-1">9:41</span>
+      <div class="dynamic-island"></div>
+      <div class="flex items-center gap-1.5 text-[#2D2D2A] pr-1">
+        <svg width="15" height="11" viewBox="0 0 17 12" fill="currentColor"><path d="M1 9h2.5v3H1V9zm4-3h2.5v6H5V6zm4-3h2.5v9H9V3zm4-3h2.5v12H13V0z"/></svg>
+        <svg width="14" height="11" viewBox="0 0 16 12" fill="currentColor"><path d="M8 9.5a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3zm-4.2-3a5.9 5.9 0 0 1 8.4 0l-1.4 1.4a3.9 3.9 0 0 0-5.6 0L3.8 6.5zM1 3.7a9.9 9.9 0 0 1 14 0l-1.4 1.4a7.9 7.9 0 0 0-11.2 0L1 3.7z"/></svg>
+        <div class="w-5 h-2.5 border border-[#2D2D2A] rounded-sm p-0.5 flex items-center">
+          <div class="h-full w-3/4 bg-[#2D2D2A] rounded-2xs"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Barra Superior: Título e Ciclo -->
+    <div class="w-full px-7 pt-7 pb-2 z-30 flex items-center justify-between">
+      <div>
+        <h2 class="text-2xl font-extrabold text-[#2D2D2A] tracking-tight">Ranking</h2>
+        <p class="text-xs font-normal text-[#84828F]">República do Sexteto Sinistro</p>
+      </div>
+
+      
+      <div class="flex items-center gap-2">
+        <a href="25_loja_casa.html" class="px-3 py-1.5 rounded-full bg-[#5E2B97] text-[#FCFCFC] text-xs font-bold flex items-center gap-1.5 shadow-xs hover:bg-[#4d237d] active:scale-95 transition-all decoration-none">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#CC92C2" stroke-width="2.5"><circle cx="12" cy="12" r="9" fill="#CC92C2" fill-opacity="0.4"/><circle cx="12" cy="12" r="4.5"/></svg>
+          <span>Loja da Casa &rarr;</span>
+        </a>
+      </div>
+<div class="hidden">
+        <span class="w-1.5 h-1.5 rounded-full bg-[#5E2B97]"></span>
+        <span>Ciclo Setembro</span>
+      </div>
+    </div>
+
+    <!-- Card Informativo do Ciclo (Enxuto) -->
+    <div class="w-full px-7 pt-2 pb-1 z-30">
+      <div class="w-full bg-[#5E2B97] text-[#FCFCFC] rounded-2xl p-4 shadow-sm shadow-[#5E2B97]/25 relative overflow-hidden">
+        <div class="flex items-center justify-between">
+          <span class="text-xs font-semibold text-purple-200">Líder atual</span>
+          <span class="px-2 py-0.5 rounded-full bg-white/15 text-white text-[10px] font-bold">19 dias restantes</span>
+        </div>
+        <div class="flex items-baseline gap-2 mt-1">
+          <span class="text-2xl font-black">Norman Osborn</span>
+          <span class="text-xs font-bold text-purple-200">1.450 XP</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Lista de Classificação Geral em Formato de Lista Única (RF-09, RF-10) -->
+    <div class="flex-1 px-7 pt-3 pb-2 z-30 overflow-y-auto no-scrollbar flex flex-col gap-3">
+      
+      <div class="flex items-center justify-between">
+        <span class="text-[11px] font-bold text-[#84828F] uppercase tracking-wider">Classificação dos moradores</span>
+        <span class="text-[11px] font-medium text-[#84828F]">Critério: XP</span>
+      </div>
+
+      <!-- Item 1: Norman Osborn (Você - 1º Colocado) -->
+      <div class="w-full bg-white border-2 border-[#5E2B97] rounded-2xl p-4 shadow-2xs flex items-center justify-between">
+        <div class="flex items-center gap-3">
+          <div class="w-7 text-center">
+            <span class="text-xs font-black text-[#5E2B97] block">1º</span>
+            <svg class="mx-auto mt-0.5" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#5E2B97" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="12" cy="8" r="7"/>
+              <polyline points="8.21 13.89 7 23 12 20 17 23 15.79 13.88"/>
+            </svg>
+          </div>
+          <div class="w-11 h-11 rounded-2xl bg-[#5E2B97] text-[#FCFCFC] font-extrabold text-xs flex items-center justify-center shadow-xs border-2 border-white">
+            NO
+          </div>
+          <div>
+            <div class="flex items-center gap-1.5">
+              <h4 class="text-xs font-extrabold text-[#2D2D2A]">Norman Osborn</h4>
+              <span class="px-1.5 py-0.2 rounded bg-[#5E2B97]/10 text-[#5E2B97] text-[9px] font-bold">Você</span>
+            </div>
+            <p class="text-[11px] text-[#84828F] flex items-center gap-1">
+              <span>18 tarefas •</span>
+              <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="#CC92C2" stroke-width="2.5" class="shrink-0"><circle cx="12" cy="12" r="9" fill="#CC92C2" fill-opacity="0.4"/><circle cx="12" cy="12" r="4.5"/></svg>
+              <span>420 moedas</span>
+            </p>
+          </div>
+        </div>
+        <div class="text-right">
+          <span class="text-xs font-black text-[#5E2B97] block">1.450 XP</span>
+          <span class="text-[10px] font-semibold text-[#84828F]">Nível 4</span>
+        </div>
+      </div>
+
+      <!-- Item 2: Doutor Octopus (2º Colocado) -->
+      <div class="w-full bg-white border border-[#84828F]/25 hover:border-[#5E2B97]/40 rounded-2xl p-4 shadow-2xs flex items-center justify-between">
+        <div class="flex items-center gap-3">
+          <div class="w-7 text-center">
+            <span class="text-xs font-bold text-[#84828F] block">2º</span>
+          </div>
+          <div class="w-11 h-11 rounded-2xl bg-white border border-[#84828F]/30 text-[#2D2D2A] font-extrabold text-xs flex items-center justify-center shadow-2xs">
+            DO
+          </div>
+          <div>
+            <h4 class="text-xs font-extrabold text-[#2D2D2A]">Doutor Octopus</h4>
+            <p class="text-[11px] text-[#84828F] flex items-center gap-1">
+              <span>15 tarefas •</span>
+              <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="#CC92C2" stroke-width="2.5" class="shrink-0"><circle cx="12" cy="12" r="9" fill="#CC92C2" fill-opacity="0.4"/><circle cx="12" cy="12" r="4.5"/></svg>
+              <span>310 moedas</span>
+            </p>
+          </div>
+        </div>
+        <div class="flex items-center gap-2.5">
+          <div class="text-right">
+            <span class="text-xs font-bold text-[#2D2D2A] block">1.280 XP</span>
+            <span class="text-[10px] font-medium text-[#84828F]">Nível 4</span>
+          </div>
+          <button class="w-8 h-8 rounded-lg bg-gray-50 border border-gray-200 text-[#5E2B97] flex items-center justify-center hover:bg-[#5E2B97]/10 active:scale-95 transition-all" title="Cutucar">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+              <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/>
+            </svg>
+          </button>
+        </div>
+      </div>
+
+      <!-- Item 3: Lagarto (3º Colocado) -->
+      <div class="w-full bg-white border border-[#84828F]/25 hover:border-[#5E2B97]/40 rounded-2xl p-4 shadow-2xs flex items-center justify-between">
+        <div class="flex items-center gap-3">
+          <div class="w-7 text-center">
+            <span class="text-xs font-bold text-[#84828F] block">3º</span>
+          </div>
+          <div class="w-11 h-11 rounded-2xl bg-white border border-[#84828F]/30 text-[#2D2D2A] font-extrabold text-xs flex items-center justify-center shadow-2xs">
+            LG
+          </div>
+          <div>
+            <h4 class="text-xs font-extrabold text-[#2D2D2A]">Lagarto</h4>
+            <p class="text-[11px] text-[#84828F] flex items-center gap-1">
+              <span>11 tarefas •</span>
+              <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="#CC92C2" stroke-width="2.5" class="shrink-0"><circle cx="12" cy="12" r="9" fill="#CC92C2" fill-opacity="0.4"/><circle cx="12" cy="12" r="4.5"/></svg>
+              <span>195 moedas</span>
+            </p>
+          </div>
+        </div>
+        <div class="flex items-center gap-2.5">
+          <div class="text-right">
+            <span class="text-xs font-bold text-[#2D2D2A] block">940 XP</span>
+            <span class="text-[10px] font-medium text-[#84828F]">Nível 3</span>
+          </div>
+          <button class="w-8 h-8 rounded-lg bg-gray-50 border border-gray-200 text-[#5E2B97] flex items-center justify-center hover:bg-[#5E2B97]/10 active:scale-95 transition-all" title="Cutucar">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+              <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/>
+            </svg>
+          </button>
+        </div>
+      </div>
+
+      <!-- Item 4: Homem-Areia (4º Colocado) -->
+      <div class="w-full bg-white border border-[#84828F]/25 hover:border-[#5E2B97]/40 rounded-2xl p-4 shadow-2xs flex items-center justify-between">
+        <div class="flex items-center gap-3">
+          <div class="w-7 text-center">
+            <span class="text-xs font-bold text-[#84828F] block">4º</span>
+          </div>
+          <div class="w-11 h-11 rounded-2xl bg-white border border-[#84828F]/30 text-[#2D2D2A] font-extrabold text-xs flex items-center justify-center shadow-2xs">
+            HA
+          </div>
+          <div>
+            <div class="flex items-center gap-1.5">
+              <h4 class="text-xs font-extrabold text-[#2D2D2A]">Homem-Areia</h4>
+              <span class="px-1.5 py-0.2 rounded bg-red-50 text-red-600 text-[9px] font-bold">2 pendentes</span>
+            </div>
+            <p class="text-[11px] text-[#84828F] flex items-center gap-1">
+              <span>7 tarefas •</span>
+              <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="#CC92C2" stroke-width="2.5" class="shrink-0"><circle cx="12" cy="12" r="9" fill="#CC92C2" fill-opacity="0.4"/><circle cx="12" cy="12" r="4.5"/></svg>
+              <span>80 moedas</span>
+            </p>
+          </div>
+        </div>
+        <div class="flex items-center gap-2.5">
+          <div class="text-right">
+            <span class="text-xs font-bold text-[#2D2D2A] block">620 XP</span>
+            <span class="text-[10px] font-medium text-[#84828F]">Nível 2</span>
+          </div>
+          <!-- Botão Cutucar em destaque -->
+          <button class="px-2.5 py-1.5 rounded-lg bg-[#5E2B97] text-white text-[10px] font-bold flex items-center gap-1 active:scale-95 transition-all shadow-xs" title="Enviar cutucada">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+              <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/>
+            </svg>
+            <span>Cutucar</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- Nota Informativa Enxuta -->
+      <div class="w-full bg-gray-50 border border-[#84828F]/20 rounded-xl p-3 flex items-start gap-2.5 mt-1">
+        <svg class="text-[#5E2B97] mt-0.5 shrink-0" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="12" cy="12" r="10"/>
+          <line x1="12" y1="16" x2="12" y2="12"/>
+          <line x1="12" y1="8" x2="12.01" y2="8"/>
+        </svg>
+        <p class="text-[11px] text-[#84828F] leading-relaxed">
+          <strong class="text-[#2D2D2A]">Cutucada (Ping):</strong> Notifica amigavelmente o morador sobre tarefas próximas do vencimento sem gerar atritos na convivência.
+        </p>
+      </div>
+
+    </div>
+
+    <!-- Barra Inferior de Navegação (Ranking Ativo) -->
+    <div class="w-full bg-white border-t border-[#84828F]/20 px-6 pt-3 pb-2 z-40">
+      <div class="flex justify-between items-center">
+        <!-- Tab: Início -->
+        <a href="13_painel_principal.html" class="flex flex-col items-center gap-1 text-[#84828F] hover:text-[#5E2B97]">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/>
+            <polyline points="9 22 9 12 15 12 15 22"/>
+          </svg>
+          <span class="text-[10px] font-bold">Início</span>
+        </a>
+        <!-- Tab: Despesas -->
+        <a href="14_lista_despesas.html" class="flex flex-col items-center gap-1 text-[#84828F] hover:text-[#5E2B97]">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="12" y1="1" x2="12" y2="23"/>
+            <path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/>
+          </svg>
+          <span class="text-[10px] font-bold">Despesas</span>
+        </a>
+        <!-- Tab: Tarefas -->
+        <a href="20_quadro_tarefas.html" class="flex flex-col items-center gap-1 text-[#84828F] hover:text-[#5E2B97]">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="9 11 12 14 22 4"/>
+            <path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/>
+          </svg>
+          <span class="text-[10px] font-bold">Tarefas</span>
+        </a>
+        <!-- Tab: Ranking (ATIVO) -->
+        <a href="24_ranking_moradores.html" class="flex flex-col items-center gap-1 text-[#5E2B97]">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+            <circle cx="12" cy="8" r="7"/>
+            <polyline points="8.21 13.89 7 23 12 20 17 23 15.79 13.88"/>
+          </svg>
+          <span class="text-[10px] font-extrabold">Ranking</span>
+        </a>
+        <!-- Tab: Perfil -->
+        <a href="27_perfil_usuario.html" class="flex flex-col items-center gap-1 text-[#84828F] hover:text-[#5E2B97]">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"></path>
+            <circle cx="12" cy="7" r="4"></circle>
+          </svg>
+          <span class="text-[10px] font-bold">Perfil</span>
+        </a>
+      </div>
+      <div class="home-indicator"></div>
+    </div>
+
+  </div>
+
+  <script src="navigator.js"></script>
+</body>
+</html>

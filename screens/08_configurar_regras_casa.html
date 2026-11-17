@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SplitHouse - 06b Regras Iniciais do Imóvel</title>
+  <script src="https://www.gstatic.com/antigravity/web/dev/tailwindcss.min.js"></script>
+  <style>
+    :root {
+      --primary-purple: #5E2B97;   /* Roxo principal */
+      --soft-white: #FCFCFC;       /* Fundo e contraste limpo */
+      --dark-graphite: #2D2D2A;    /* Textos principais e títulos */
+      --accent-lilac: #CC92C2;     /* Lilás/rosa para detalhes e destaques */
+      --rosy-granite: #84828F;     /* Cinza rosado para bordas e subtítulos */
+    }
+
+        html, body {
+      width: 390px;
+      height: 844px;
+      margin: 0;
+      padding: 0;
+      overflow: hidden;
+      background-color: transparent;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    }
+
+    /* Dimensões padronizadas mobile (390 x 844 px) */
+    .mobile-frame {
+      width: 390px;
+      height: 844px;
+      background-color: #FCFCFC;
+      border-radius: 48px;
+      position: relative;
+      overflow: hidden;
+      box-shadow: none;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      user-select: none;
+    }
+
+    /* Entalhe superior da câmera */
+    .dynamic-island {
+      width: 96px;
+      height: 24px;
+      background-color: #000;
+      border-radius: 20px;
+      position: absolute;
+      left: 50%;
+      top: 10px;
+      transform: translateX(-50%);
+      z-index: 50;
+    }
+
+    .purple-glow-top {
+      position: absolute;
+      width: 340px;
+      height: 340px;
+      top: -120px;
+      right: -100px;
+      background: radial-gradient(circle, rgba(94, 43, 151, 0.10) 0%, rgba(204, 146, 194, 0.08) 50%, transparent 70%);
+      border-radius: 50%;
+      pointer-events: none;
+    }
+
+    .home-indicator {
+      width: 134px;
+      height: 5px;
+      background-color: #2D2D2A;
+      border-radius: 100px;
+      margin: 6px auto 8px auto;
+      opacity: 0.25;
+    }
+
+    .no-scrollbar::-webkit-scrollbar {
+      display: none;
+    }
+    .no-scrollbar {
+      -ms-overflow-style: none;
+      scrollbar-width: none;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- FRAME MOBILE REGRAS INICIAIS DA CASA (TELA 06b) -->
+  <div class="mobile-frame" id="splithouse-screen-06b">
+    
+    <div class="purple-glow-top"></div>
+
+    <!-- Barra de Status Mobile Padronizada -->
+    <div class="w-full pt-3 px-8 flex justify-between items-center z-40 text-xs font-semibold text-[#2D2D2A] relative">
+      <span class="tracking-tight pl-1">9:41</span>
+      <div class="dynamic-island"></div>
+      <div class="flex items-center gap-1.5 text-[#2D2D2A] pr-1">
+        <svg width="15" height="11" viewBox="0 0 17 12" fill="currentColor"><path d="M1 9h2.5v3H1V9zm4-3h2.5v6H5V6zm4-3h2.5v9H9V3zm4-3h2.5v12H13V0z"/></svg>
+        <svg width="14" height="11" viewBox="0 0 16 12" fill="currentColor"><path d="M8 9.5a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3zm-4.2-3a5.9 5.9 0 0 1 8.4 0l-1.4 1.4a3.9 3.9 0 0 0-5.6 0L3.8 6.5zM1 3.7a9.9 9.9 0 0 1 14 0l-1.4 1.4a7.9 7.9 0 0 0-11.2 0L1 3.7z"/></svg>
+        <div class="w-5 h-2.5 border border-[#2D2D2A] rounded-sm p-0.5 flex items-center">
+          <div class="h-full w-3/4 bg-[#2D2D2A] rounded-2xs"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Barra Superior: Voltar e Indicador de Passo -->
+    <div class="w-full px-7 pt-7 pb-2 z-30 flex items-center justify-between">
+      <a href="07_cadastrar_casa.html" class="w-10 h-10 rounded-xl bg-white border border-[#84828F]/25 flex items-center justify-center text-[#2D2D2A] hover:border-[#5E2B97]/40 active:scale-95 transition-all">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+          <polyline points="15 18 9 12 15 6"/>
+        </svg>
+      </a>
+
+      <span class="px-3 py-1 rounded-full bg-[#5E2B97]/10 text-[#5E2B97] text-xs font-bold">
+        Passo 2 de 2
+      </span>
+    </div>
+
+    <!-- Conteúdo do Formulário de Regras -->
+    <div class="flex-1 px-7 pt-1 pb-3 z-30 overflow-y-auto no-scrollbar flex flex-col gap-3.5">
+
+      <div>
+        <h2 class="text-2xl font-extrabold text-[#2D2D2A] tracking-tight">Regras da república</h2>
+        <p class="text-xs font-normal text-[#84828F] mt-0.5">
+          Defina as diretrizes básicas de convivência da <strong>República do Sexteto Sinistro</strong>.
+        </p>
+      </div>
+
+      <!-- 1. Horário de Silêncio -->
+      <div class="bg-white border border-[#84828F]/20 rounded-2xl p-4 shadow-2xs flex flex-col gap-2">
+        <div class="flex items-center gap-2">
+          <div class="w-7 h-7 rounded-lg bg-[#5E2B97]/10 text-[#5E2B97] flex items-center justify-center">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"/>
+            </svg>
+          </div>
+          <label class="text-[11px] font-bold text-[#2D2D2A] uppercase tracking-wider">Horário de Silêncio</label>
+        </div>
+        <input 
+          type="text" 
+          value="22h00 às 08h00 (dias úteis) • 00h00 aos sábados"
+          class="w-full text-xs font-medium text-[#2D2D2A] border border-[#84828F]/20 rounded-xl p-2.5 focus:outline-none focus:border-[#5E2B97]"
+        />
+        <p class="text-[10px] text-[#84828F]">Música alta e barulho em áreas comuns após esse horário são proibidos.</p>
+      </div>
+
+      <!-- 2. Visitas e Festas -->
+      <div class="bg-white border border-[#84828F]/20 rounded-2xl p-4 shadow-2xs flex flex-col gap-2">
+        <div class="flex items-center gap-2">
+          <div class="w-7 h-7 rounded-lg bg-[#CC92C2]/20 text-[#5E2B97] flex items-center justify-center">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
+              <circle cx="9" cy="7" r="4"/>
+              <path d="M23 21v-2a4 4 0 0 0-3-3.87"/>
+              <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+            </svg>
+          </div>
+          <label class="text-[11px] font-bold text-[#2D2D2A] uppercase tracking-wider">Visitas e Hóspedes</label>
+        </div>
+        <input 
+          type="text" 
+          value="Aviso prévio de 24h no grupo para hóspedes que vão pernoitar"
+          class="w-full text-xs font-medium text-[#2D2D2A] border border-[#84828F]/20 rounded-xl p-2.5 focus:outline-none focus:border-[#5E2B97]"
+        />
+        <p class="text-[10px] text-[#84828F]">Permitido até 2 pernoites semanais por convidado sem custo adicional.</p>
+      </div>
+
+      <!-- 3. Compras e Insumos Coletivos -->
+      <div class="bg-white border border-[#84828F]/20 rounded-2xl p-4 shadow-2xs flex flex-col gap-2">
+        <div class="flex items-center gap-2">
+          <div class="w-7 h-7 rounded-lg bg-gray-100 text-[#2D2D2A] flex items-center justify-center">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="9" cy="21" r="1"/>
+              <circle cx="20" cy="21" r="1"/>
+              <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/>
+            </svg>
+          </div>
+          <label class="text-[11px] font-bold text-[#2D2D2A] uppercase tracking-wider">Insumos e Produtos Comuns</label>
+        </div>
+        <input 
+          type="text" 
+          value="Produtos de limpeza, papel higiênico e temperos são rateados igualmente"
+          class="w-full text-xs font-medium text-[#2D2D2A] border border-[#84828F]/20 rounded-xl p-2.5 focus:outline-none focus:border-[#5E2B97]"
+        />
+      </div>
+
+      <!-- 4. Tolerância de Pagamento -->
+      <div class="bg-white border border-[#84828F]/20 rounded-2xl p-4 shadow-2xs flex flex-col gap-2">
+        <div class="flex items-center gap-2">
+          <div class="w-7 h-7 rounded-lg bg-[#5E2B97]/10 text-[#5E2B97] flex items-center justify-center">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="12" cy="12" r="10"/>
+              <polyline points="12 6 12 12 16 14"/>
+            </svg>
+          </div>
+          <label class="text-[11px] font-bold text-[#2D2D2A] uppercase tracking-wider">Tolerância de Contas</label>
+        </div>
+        <input 
+          type="text" 
+          value="Até 3 dias úteis após a data de vencimento informada na despesa"
+          class="w-full text-xs font-medium text-[#2D2D2A] border border-[#84828F]/20 rounded-xl p-2.5 focus:outline-none focus:border-[#5E2B97]"
+        />
+      </div>
+
+      <!-- Botão Adicionar Nova Regra -->
+      <button type="button" class="w-full py-3.5 px-4 rounded-2xl border-2 border-dashed border-[#CC92C2]/60 hover:border-[#5E2B97] bg-[#CC92C2]/5 hover:bg-[#CC92C2]/10 text-[#5E2B97] text-xs font-bold flex items-center justify-center gap-2 transition-all active:scale-[0.99] shadow-2xs">
+        <div class="w-6 h-6 rounded-lg bg-[#5E2B97]/10 flex items-center justify-center text-[#5E2B97]">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="12" y1="5" x2="12" y2="19"></line>
+            <line x1="5" y1="12" x2="19" y2="12"></line>
+          </svg>
+        </div>
+        <span>Adicionar nova regra</span>
+      </button>
+
+      <!-- Card Explicativo -->
+      <div class="bg-gray-50 border border-[#84828F]/20 rounded-2xl p-3 flex items-start gap-2.5">
+        <svg class="text-[#5E2B97] mt-0.5 shrink-0" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="12" cy="12" r="10"/>
+          <line x1="12" y1="16" x2="12" y2="12"/>
+          <line x1="12" y1="8" x2="12.01" y2="8"/>
+        </svg>
+        <p class="text-[11px] text-[#84828F] leading-relaxed">
+          Essas regras ficarão visíveis para todos os novos moradores assim que aceitarem o convite e poderão ser editadas a qualquer momento.
+        </p>
+      </div>
+
+    </div>
+
+    <!-- Botão de Ação Inferior Fixo -->
+    <div class="w-full px-7 pt-2 pb-2 z-40 bg-white/90 backdrop-blur-md border-t border-[#84828F]/20">
+      <a href="09_convite_qr_casa.html" class="w-full py-3.5 rounded-2xl bg-[#5E2B97] text-[#FCFCFC] text-sm font-extrabold flex items-center justify-center gap-2 shadow-md shadow-[#5E2B97]/30 active:scale-[0.98] transition-transform">
+        <span>Salvar regras e gerar convite</span>
+      </a>
+      <div class="home-indicator"></div>
+    </div>
+
+  </div>
+
+  <script src="navigator.js"></script>
+</body>
+</html>

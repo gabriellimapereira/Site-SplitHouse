@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SplitHouse - 13 Nova Despesa</title>
+  <script src="https://www.gstatic.com/antigravity/web/dev/tailwindcss.min.js"></script>
+  <style>
+    :root {
+      --primary-purple: #5E2B97;   /* Roxo principal */
+      --soft-white: #FCFCFC;       /* Fundo e contraste limpo */
+      --dark-graphite: #2D2D2A;    /* Textos principais e títulos */
+      --accent-lilac: #CC92C2;     /* Lilás/rosa para detalhes e destaques */
+      --rosy-granite: #84828F;     /* Cinza rosado para bordas e subtítulos */
+    }
+
+        html, body {
+      width: 390px;
+      height: 844px;
+      margin: 0;
+      padding: 0;
+      overflow: hidden;
+      background-color: transparent;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    }
+
+    /* Dimensões padronizadas mobile (390 x 844 px) */
+    .mobile-frame {
+      width: 390px;
+      height: 844px;
+      background-color: #FCFCFC;
+      border-radius: 48px;
+      position: relative;
+      overflow: hidden;
+      box-shadow: none;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      user-select: none;
+    }
+
+    /* Entalhe superior da câmera (Dynamic Island padrão) */
+    .dynamic-island {
+      width: 96px;
+      height: 24px;
+      background-color: #000;
+      border-radius: 20px;
+      position: absolute;
+      left: 50%;
+      top: 10px;
+      transform: translateX(-50%);
+      z-index: 50;
+    }
+
+    .purple-glow-top {
+      position: absolute;
+      width: 340px;
+      height: 340px;
+      top: -120px;
+      right: -100px;
+      background: radial-gradient(circle, rgba(94, 43, 151, 0.10) 0%, rgba(204, 146, 194, 0.08) 50%, transparent 70%);
+      border-radius: 50%;
+      pointer-events: none;
+    }
+
+    .home-indicator {
+      width: 134px;
+      height: 5px;
+      background-color: #2D2D2A;
+      border-radius: 100px;
+      margin: 6px auto 8px auto;
+      opacity: 0.25;
+    }
+
+    .no-scrollbar::-webkit-scrollbar {
+      display: none;
+    }
+    .no-scrollbar {
+      -ms-overflow-style: none;
+      scrollbar-width: none;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- FRAME MOBILE CRIAR NOVA DESPESA (TELA 13) -->
+  <div class="mobile-frame" id="splithouse-screen-13">
+    
+    <div class="purple-glow-top"></div>
+
+    <!-- Barra de Status Mobile Padronizada -->
+    <div class="w-full pt-3 px-8 flex justify-between items-center z-40 text-xs font-semibold text-[#2D2D2A] relative">
+      <span class="tracking-tight pl-1">9:41</span>
+      <div class="dynamic-island"></div>
+      <div class="flex items-center gap-1.5 text-[#2D2D2A] pr-1">
+        <svg width="15" height="11" viewBox="0 0 17 12" fill="currentColor"><path d="M1 9h2.5v3H1V9zm4-3h2.5v6H5V6zm4-3h2.5v9H9V3zm4-3h2.5v12H13V0z"/></svg>
+        <svg width="14" height="11" viewBox="0 0 16 12" fill="currentColor"><path d="M8 9.5a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3zm-4.2-3a5.9 5.9 0 0 1 8.4 0l-1.4 1.4a3.9 3.9 0 0 0-5.6 0L3.8 6.5zM1 3.7a9.9 9.9 0 0 1 14 0l-1.4 1.4a7.9 7.9 0 0 0-11.2 0L1 3.7z"/></svg>
+        <div class="w-5 h-2.5 border border-[#2D2D2A] rounded-sm p-0.5 flex items-center">
+          <div class="h-full w-3/4 bg-[#2D2D2A] rounded-2xs"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Barra Superior: Voltar e Título -->
+    <div class="w-full px-7 pt-7 pb-1 z-30 flex items-center justify-between">
+      <a href="14_lista_despesas.html" class="w-10 h-10 rounded-xl bg-white border border-[#84828F]/25 flex items-center justify-center text-[#2D2D2A] shadow-xs active:scale-95 transition-transform hover:border-[#5E2B97]/40"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"></polyline></svg></a>
+
+      <h3 class="text-sm font-extrabold text-[#2D2D2A]">Nova Despesa</h3>
+
+      <div class="w-10"></div> <!-- Espaçador para equilíbrio -->
+    </div>
+
+    <!-- Conteúdo do Formulário (Roolável) -->
+    <div class="flex-1 px-7 pt-3 pb-3 z-30 overflow-y-auto no-scrollbar flex flex-col gap-3.5">
+      
+      <!-- 1. Campo: Valor Total e Título -->
+      <div class="bg-white border border-[#84828F]/20 rounded-2xl p-4 shadow-2xs">
+        <label class="text-[11px] font-bold text-[#84828F] uppercase tracking-wider block mb-1">Valor da conta</label>
+        <div class="flex items-center gap-2">
+          <span class="text-2xl font-black text-[#5E2B97]">R$</span>
+          <input 
+            type="text" 
+            placeholder="0,00" 
+            value="140,00"
+            class="text-3xl font-black text-[#2D2D2A] w-full focus:outline-none tracking-tight"
+          />
+        </div>
+
+        <div class="h-px bg-[#84828F]/15 w-full my-3"></div>
+
+        <label class="text-[11px] font-bold text-[#84828F] uppercase tracking-wider block mb-1">Descrição</label>
+        <input 
+          type="text" 
+          placeholder="Ex: Internet Fibra 600MB" 
+          value="Internet Fibra 600MB"
+          class="w-full text-sm font-semibold text-[#2D2D2A] focus:outline-none placeholder:font-normal"
+        />
+      </div>
+
+      <!-- 2. Categoria e Data de Vencimento -->
+      <div class="grid grid-cols-2 gap-2.5">
+        <div class="bg-white border border-[#84828F]/20 rounded-2xl p-3 shadow-2xs">
+          <label class="text-[10px] font-bold text-[#84828F] uppercase tracking-wider block mb-1">Categoria</label>
+          <div class="flex items-center gap-1.5 text-xs font-bold text-[#2D2D2A]">
+            <span class="w-2 h-2 rounded-full bg-[#5E2B97]"></span>
+            <span>Utilidades</span>
+          </div>
+        </div>
+
+        <div class="bg-white border border-[#84828F]/20 rounded-2xl p-3 shadow-2xs">
+          <label class="text-[10px] font-bold text-[#84828F] uppercase tracking-wider block mb-1">Vencimento</label>
+          <div class="flex items-center gap-1.5 text-xs font-bold text-[#2D2D2A]">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
+              <line x1="16" y1="2" x2="16" y2="6"></line>
+              <line x1="8" y1="2" x2="8" y2="6"></line>
+              <line x1="3" y1="10" x2="21" y2="10"></line>
+            </svg>
+            <span>15/09/2026</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- 3. Quem pagou? (Seleção de Pagador) -->
+      <div class="bg-white border border-[#84828F]/20 rounded-2xl p-3.5 shadow-2xs">
+        <label class="text-[11px] font-bold text-[#84828F] uppercase tracking-wider block mb-2">Quem pagou a conta?</label>
+        <div class="flex items-center gap-2">
+          <button type="button" class="py-1.5 px-3 rounded-full bg-[#5E2B97] text-[#FCFCFC] text-xs font-bold shadow-xs">
+            Norman Osborn (Você)
+          </button>
+          <button type="button" class="py-1.5 px-3 rounded-full bg-zinc-100 text-[#2D2D2A] text-xs font-semibold hover:bg-zinc-200">
+            Outro morador
+          </button>
+        </div>
+      </div>
+
+      <!-- 4. Modalidade de Rateio (RF-04, RN-05) -->
+      <div class="bg-white border border-[#84828F]/20 rounded-2xl p-3.5 shadow-2xs">
+        <label class="text-[11px] font-bold text-[#84828F] uppercase tracking-wider block mb-2">Como será a divisão?</label>
+        
+        <!-- Tabs de Divisão -->
+        <div class="grid grid-cols-3 gap-1.5 p-1 bg-zinc-100 rounded-xl mb-3">
+          <button type="button" class="py-1.5 rounded-lg bg-white text-[#5E2B97] font-bold text-xs shadow-xs text-center">
+            Igualitária
+          </button>
+          <button type="button" class="py-1.5 rounded-lg text-[#84828F] font-semibold text-xs text-center">
+            Porcentagem
+          </button>
+          <button type="button" class="py-1.5 rounded-lg text-[#84828F] font-semibold text-xs text-center">
+            Valor Fixo
+          </button>
+        </div>
+
+        <!-- Participantes do Rateio -->
+        <div class="flex flex-col gap-2">
+          <div class="flex justify-between items-center text-xs">
+            <span class="font-bold text-[#2D2D2A]">Dividir com todos (4 moradores)</span>
+            <span class="font-black text-[#5E2B97]">R$ 35,00 / pessoa</span>
+          </div>
+          <p class="text-[10px] text-[#84828F] leading-tight">
+            Norman Osborn, Doutor Octopus, Lagarto e Homem-Areia.
+          </p>
+        </div>
+      </div>
+
+      <!-- 5. Anexar Comprovante (RF-04) -->
+      <div class="bg-white border border-dashed border-[#5E2B97]/40 rounded-2xl p-3.5 flex items-center justify-between cursor-pointer hover:bg-[#5E2B97]/5 transition-colors">
+        <div class="flex items-center gap-3">
+          <div class="w-9 h-9 rounded-xl bg-[#5E2B97]/10 text-[#5E2B97] flex items-center justify-center">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <rect width="18" height="18" x="3" y="3" rx="2" ry="2"/>
+              <circle cx="9" cy="9" r="2"/>
+              <path d="m21 15-3.086-3.086a2 2 0 0 0-2.828 0L6 21"/>
+            </svg>
+          </div>
+          <div>
+            <h5 class="text-xs font-bold text-[#2D2D2A]">Anexar Comprovante</h5>
+            <p class="text-[10px] text-[#84828F]">Foto da nota fiscal ou boleto</p>
+          </div>
+        </div>
+        <span class="text-xs font-bold text-[#5E2B97]">+ Adicionar</span>
+      </div>
+
+    </div>
+
+    <!-- Botão de Ação Inferior: Salvar Despesa -->
+    <div class="w-full px-7 pb-3 z-30 flex flex-col gap-2">
+      <button class="w-full py-4 rounded-2xl bg-[#5E2B97] hover:bg-[#4d237d] active:scale-[0.98] transition-all text-[#FCFCFC] font-bold text-base shadow-md shadow-[#5E2B97]/25 flex items-center justify-center gap-2">
+        <span>Cadastrar despesa</span>
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+          <polyline points="20 6 9 17 4 12"></polyline>
+        </svg>
+      </button>
+
+      <div class="home-indicator"></div>
+    </div>
+
+  </div>
+
+  <script src="navigator.js"></script>
+</body>
+</html>

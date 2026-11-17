@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SplitHouse - 03 Cadastro</title>
+  <script src="https://www.gstatic.com/antigravity/web/dev/tailwindcss.min.js"></script>
+  <style>
+    :root {
+      --primary-purple: #5E2B97;   /* Roxo principal */
+      --soft-white: #FCFCFC;       /* Fundo e contraste limpo */
+      --dark-graphite: #2D2D2A;    /* Textos principais e títulos */
+      --accent-lilac: #CC92C2;     /* Lilás/rosa para detalhes e links */
+      --rosy-granite: #84828F;     /* Cinza rosado para placeholders, bordas e ícones */
+    }
+
+        html, body {
+      width: 390px;
+      height: 844px;
+      margin: 0;
+      padding: 0;
+      overflow: hidden;
+      background-color: transparent;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    }
+
+    /* Dimensões padronizadas mobile (390 x 844 px) */
+    .mobile-frame {
+      width: 390px;
+      height: 844px;
+      background-color: #FCFCFC;
+      border-radius: 48px;
+      position: relative;
+      overflow: hidden;
+      box-shadow: none;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      user-select: none;
+    }
+
+    /* Entalhe superior da câmera (Dynamic Island padrão) */
+    .dynamic-island {
+      width: 96px;
+      height: 24px;
+      background-color: #000;
+      border-radius: 20px;
+      position: absolute;
+      left: 50%;
+      top: 10px;
+      transform: translateX(-50%);
+      z-index: 50;
+    }
+
+    /* Brilho decorativo suave */
+    .purple-glow-top {
+      position: absolute;
+      width: 340px;
+      height: 340px;
+      top: -120px;
+      right: -100px;
+      background: radial-gradient(circle, rgba(94, 43, 151, 0.10) 0%, rgba(204, 146, 194, 0.08) 50%, transparent 70%);
+      border-radius: 50%;
+      pointer-events: none;
+    }
+
+    .home-indicator {
+      width: 134px;
+      height: 5px;
+      background-color: #2D2D2A;
+      border-radius: 100px;
+      margin: 8px auto 12px auto;
+      opacity: 0.25;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- FRAME MOBILE TELA DE CADASTRO -->
+  <div class="mobile-frame" id="splithouse-screen-03">
+    
+    <div class="purple-glow-top"></div>
+
+    <!-- Barra de Status Mobile -->
+    <div class="w-full pt-3 px-8 flex justify-between items-center z-40 text-xs font-semibold text-[#2D2D2A] relative">
+      <span class="tracking-tight pl-1">9:41</span>
+      <div class="dynamic-island"></div>
+      <div class="flex items-center gap-1.5 text-[#2D2D2A] pr-1">
+        <!-- Ícone Sinal -->
+        <svg width="15" height="11" viewBox="0 0 17 12" fill="currentColor">
+          <path d="M1 9h2.5v3H1V9zm4-3h2.5v6H5V6zm4-3h2.5v9H9V3zm4-3h2.5v12H13V0z"/>
+        </svg>
+        <!-- Ícone Wi-Fi -->
+        <svg width="14" height="11" viewBox="0 0 16 12" fill="currentColor">
+          <path d="M8 9.5a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3zm-4.2-3a5.9 5.9 0 0 1 8.4 0l-1.4 1.4a3.9 3.9 0 0 0-5.6 0L3.8 6.5zM1 3.7a9.9 9.9 0 0 1 14 0l-1.4 1.4a7.9 7.9 0 0 0-11.2 0L1 3.7z"/>
+        </svg>
+        <!-- Ícone Bateria -->
+        <div class="w-5 h-2.5 border border-[#2D2D2A] rounded-sm p-0.5 flex items-center">
+          <div class="h-full w-3/4 bg-[#2D2D2A] rounded-2xs"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Barra de Ação Superior (Botão Voltar) -->
+    <div class="w-full px-6 pt-3 pb-1 z-30 flex items-center">
+      <a href="02_boas_vindas.html" class="w-10 h-10 rounded-xl bg-white border border-[#84828F]/25 flex items-center justify-center text-[#2D2D2A] shadow-xs active:scale-95 transition-transform hover:border-[#5E2B97]/40"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"></polyline></svg></a>
+    </div>
+
+    <!-- Área Principal de Formulário -->
+    <div class="flex-1 px-8 pt-1 pb-3 z-30 flex flex-col justify-center">
+      
+      <!-- Cabeçalho -->
+      <div class="mb-5">
+        <h2 class="text-3xl font-extrabold text-[#2D2D2A] tracking-tight mb-1.5">
+          Crie sua conta
+        </h2>
+        <p class="text-sm font-normal text-[#84828F]">
+          Comece a organizar suas contas e tarefas coletivas.
+        </p>
+      </div>
+
+      <!-- Formulário de Cadastro -->
+      <form class="flex flex-col gap-3.5">
+        
+        <!-- Campo: Nome Completo -->
+        <div class="flex flex-col gap-1">
+          <label class="text-xs font-bold text-[#2D2D2A]">Nome completo</label>
+          <div class="relative flex items-center">
+            <span class="absolute left-4 text-[#84828F]">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"></path>
+                <circle cx="12" cy="7" r="4"></circle>
+              </svg>
+            </span>
+            <input 
+              type="text" 
+              placeholder="Ex: Norman Osborn" 
+              class="w-full pl-11 pr-4 py-3 bg-white border border-[#84828F]/30 rounded-2xl text-sm font-medium text-[#2D2D2A] focus:outline-none focus:border-[#5E2B97] focus:ring-2 focus:ring-[#5E2B97]/15 shadow-2xs"
+            />
+          </div>
+        </div>
+
+        <!-- Campo: E-mail -->
+        <div class="flex flex-col gap-1">
+          <label class="text-xs font-bold text-[#2D2D2A]">E-mail</label>
+          <div class="relative flex items-center">
+            <span class="absolute left-4 text-[#84828F]">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <rect width="20" height="16" x="2" y="4" rx="2"></rect>
+                <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"></path>
+              </svg>
+            </span>
+            <input 
+              type="email" 
+              placeholder="seuemail@exemplo.com" 
+              class="w-full pl-11 pr-4 py-3 bg-white border border-[#84828F]/30 rounded-2xl text-sm font-medium text-[#2D2D2A] focus:outline-none focus:border-[#5E2B97] focus:ring-2 focus:ring-[#5E2B97]/15 shadow-2xs"
+            />
+          </div>
+        </div>
+
+        <!-- Campo: Senha -->
+        <div class="flex flex-col gap-1">
+          <label class="text-xs font-bold text-[#2D2D2A]">Senha</label>
+          <div class="relative flex items-center">
+            <span class="absolute left-4 text-[#84828F]">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <rect width="18" height="11" x="3" y="11" rx="2" ry="2"></rect>
+                <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
+              </svg>
+            </span>
+            <input 
+              type="password" 
+              placeholder="Mínimo de 8 caracteres" 
+              class="w-full pl-11 pr-11 py-3 bg-white border border-[#84828F]/30 rounded-2xl text-sm font-medium text-[#2D2D2A] focus:outline-none focus:border-[#5E2B97] focus:ring-2 focus:ring-[#5E2B97]/15 shadow-2xs"
+            />
+            <button type="button" class="absolute right-4 text-[#84828F] hover:text-[#5E2B97]">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7Z"></path>
+                <circle cx="12" cy="12" r="3"></circle>
+              </svg>
+            </button>
+          </div>
+        </div>
+
+        <!-- Campo: Confirmar Senha -->
+        <div class="flex flex-col gap-1">
+          <label class="text-xs font-bold text-[#2D2D2A]">Confirmar senha</label>
+          <div class="relative flex items-center">
+            <span class="absolute left-4 text-[#84828F]">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+              </svg>
+            </span>
+            <input 
+              type="password" 
+              placeholder="Repita sua senha" 
+              class="w-full pl-11 pr-4 py-3 bg-white border border-[#84828F]/30 rounded-2xl text-sm font-medium text-[#2D2D2A] focus:outline-none focus:border-[#5E2B97] focus:ring-2 focus:ring-[#5E2B97]/15 shadow-2xs"
+            />
+          </div>
+        </div>
+
+        <!-- Checkbox de Termos -->
+        <div class="flex items-start gap-2 pt-1">
+          <input type="checkbox" id="terms" checked class="mt-0.5 w-4 h-4 rounded border-[#84828F] text-[#5E2B97] focus:ring-[#5E2B97]/30 accent-[#5E2B97]" />
+          <label for="terms" class="text-[11px] text-[#84828F] leading-snug">
+            Li e concordo com os <a href="#" class="text-[#5E2B97] font-semibold underline decoration-[#CC92C2]">Termos de Uso</a> e a <a href="#" class="text-[#5E2B97] font-semibold underline decoration-[#CC92C2]">Política de Privacidade</a>.
+          </label>
+        </div>
+
+        <!-- Botão Principal: Cadastrar (Foco no Roxo) -->
+        <a href="06_selecao_casa.html" class="w-full mt-2 py-3.5 rounded-2xl bg-[#5E2B97] hover:bg-[#4d237d] active:scale-[0.98] transition-all duration-150 text-[#FCFCFC] font-bold text-base shadow-lg shadow-[#5E2B97]/25 flex items-center justify-center gap-2 text-center decoration-none">
+          <span>Cadastrar</span>
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="5" y1="12" x2="19" y2="12"></line>
+            <polyline points="12 5 19 12 12 19"></polyline>
+          </svg>
+        </a>
+
+      </form>
+
+    </div>
+
+    <!-- Rodapé: Link para Login -->
+    <div class="w-full px-8 pb-3 z-30 flex flex-col items-center">
+      <p class="text-xs text-[#84828F] font-normal mb-2">
+        Já possui uma conta? 
+        <a href="03_login.html" class="font-bold text-[#5E2B97] hover:text-[#4d237d] underline decoration-[#CC92C2] decoration-2 underline-offset-2">
+          Faça login
+        </a>
+      </p>
+
+      <div class="home-indicator"></div>
+    </div>
+
+  </div>
+
+  <script src="navigator.js"></script>
+</body>
+</html>

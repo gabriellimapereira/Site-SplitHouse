@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SplitHouse - 12 Lista de Despesas</title>
+  <script src="https://www.gstatic.com/antigravity/web/dev/tailwindcss.min.js"></script>
+  <style>
+    :root {
+      --primary-purple: #5E2B97;   /* Roxo principal */
+      --soft-white: #FCFCFC;       /* Fundo e contraste limpo */
+      --dark-graphite: #2D2D2A;    /* Textos principais e títulos */
+      --accent-lilac: #CC92C2;     /* Lilás/rosa para detalhes e destaques */
+      --rosy-granite: #84828F;     /* Cinza rosado para bordas e subtítulos */
+    }
+
+        html, body {
+      width: 390px;
+      height: 844px;
+      margin: 0;
+      padding: 0;
+      overflow: hidden;
+      background-color: transparent;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    }
+
+    /* Dimensões padronizadas mobile (390 x 844 px) */
+    .mobile-frame {
+      width: 390px;
+      height: 844px;
+      background-color: #FCFCFC;
+      border-radius: 48px;
+      position: relative;
+      overflow: hidden;
+      box-shadow: none;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      user-select: none;
+    }
+
+    /* Entalhe superior da câmera (Dynamic Island padrão) */
+    .dynamic-island {
+      width: 96px;
+      height: 24px;
+      background-color: #000;
+      border-radius: 20px;
+      position: absolute;
+      left: 50%;
+      top: 10px;
+      transform: translateX(-50%);
+      z-index: 50;
+    }
+
+    .purple-glow-top {
+      position: absolute;
+      width: 340px;
+      height: 340px;
+      top: -120px;
+      right: -100px;
+      background: radial-gradient(circle, rgba(94, 43, 151, 0.10) 0%, rgba(204, 146, 194, 0.08) 50%, transparent 70%);
+      border-radius: 50%;
+      pointer-events: none;
+    }
+
+    .home-indicator {
+      width: 134px;
+      height: 5px;
+      background-color: #2D2D2A;
+      border-radius: 100px;
+      margin: 6px auto 8px auto;
+      opacity: 0.25;
+    }
+
+    .no-scrollbar::-webkit-scrollbar {
+      display: none;
+    }
+    .no-scrollbar {
+      -ms-overflow-style: none;
+      scrollbar-width: none;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- FRAME MOBILE LISTA DE DESPESAS (TELA 12) -->
+  <div class="mobile-frame" id="splithouse-screen-12">
+    
+    <div class="purple-glow-top"></div>
+
+    <!-- Barra de Status Mobile Padronizada -->
+    <div class="w-full pt-3 px-8 flex justify-between items-center z-40 text-xs font-semibold text-[#2D2D2A] relative">
+      <span class="tracking-tight pl-1">9:41</span>
+      <div class="dynamic-island"></div>
+      <div class="flex items-center gap-1.5 text-[#2D2D2A] pr-1">
+        <svg width="15" height="11" viewBox="0 0 17 12" fill="currentColor"><path d="M1 9h2.5v3H1V9zm4-3h2.5v6H5V6zm4-3h2.5v9H9V3zm4-3h2.5v12H13V0z"/></svg>
+        <svg width="14" height="11" viewBox="0 0 16 12" fill="currentColor"><path d="M8 9.5a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3zm-4.2-3a5.9 5.9 0 0 1 8.4 0l-1.4 1.4a3.9 3.9 0 0 0-5.6 0L3.8 6.5zM1 3.7a9.9 9.9 0 0 1 14 0l-1.4 1.4a7.9 7.9 0 0 0-11.2 0L1 3.7z"/></svg>
+        <div class="w-5 h-2.5 border border-[#2D2D2A] rounded-sm p-0.5 flex items-center">
+          <div class="h-full w-3/4 bg-[#2D2D2A] rounded-2xs"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Barra Superior: Título e Botão Nova Despesa -->
+    <div class="w-full px-7 pt-7 pb-2 z-30 flex items-center justify-between">
+      <div>
+        <h2 class="text-2xl font-extrabold text-[#2D2D2A] tracking-tight">Despesas</h2>
+        <p class="text-xs font-normal text-[#84828F]">República do Sexteto Sinistro</p>
+      </div>
+
+      <!-- Ações do Topo: Relatórios e Adicionar Despesa -->
+      <div class="flex items-center gap-2">
+        <!-- Atalho para Tela 17: Relatórios e Gráficos -->
+        <a href="19_relatorios_financeiros.html" class="w-10 h-10 rounded-xl bg-white border border-[#84828F]/25 flex items-center justify-center text-[#2D2D2A] hover:text-[#5E2B97] shadow-xs active:scale-95 transition-transform" title="Ver Gráficos e Relatórios">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="18" y1="20" x2="18" y2="10"/>
+            <line x1="12" y1="20" x2="12" y2="4"/>
+            <line x1="6" y1="20" x2="6" y2="14"/>
+          </svg>
+        </a>
+
+        <!-- Botão Adicionar Despesa (Tela 13) -->
+        <a href="15_cadastrar_despesa.html" class="px-3 py-2.5 rounded-xl bg-[#5E2B97] text-[#FCFCFC] text-xs font-bold flex items-center gap-1.5 shadow-sm shadow-[#5E2B97]/25 active:scale-95 transition-transform">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="12" y1="5" x2="12" y2="19"></line>
+            <line x1="5" y1="12" x2="19" y2="12"></line>
+          </svg>
+          <span>Adicionar</span>
+        </a>
+      </div>
+    </div>
+
+    <!-- Abas de Filtros (Pills de Navegação) -->
+    <div class="w-full px-7 pt-2 pb-1 z-30 flex items-center gap-2">
+      <button class="px-3.5 py-1.5 rounded-full bg-[#5E2B97] text-[#FCFCFC] text-xs font-bold shadow-xs">
+        Todas
+      </button>
+      <button class="px-3.5 py-1.5 rounded-full bg-white border border-[#84828F]/30 text-[#84828F] hover:text-[#2D2D2A] text-xs font-semibold">
+        Pendentes
+      </button>
+      <button class="px-3.5 py-1.5 rounded-full bg-white border border-[#84828F]/30 text-[#84828F] hover:text-[#2D2D2A] text-xs font-semibold">
+        Pagas
+      </button>
+      <button class="px-3.5 py-1.5 rounded-full bg-white border border-[#84828F]/30 text-[#84828F] hover:text-[#2D2D2A] text-xs font-semibold">
+        Recorrentes
+      </button>
+    </div>
+
+    <!-- Lista Roolável de Despesas (RF-04, RF-05) -->
+    <div class="flex-1 px-7 pt-3 pb-2 z-30 overflow-y-auto no-scrollbar flex flex-col gap-3">
+      
+      <!-- Card 1: Internet Fibra Óptica (Pendente de rateio) -->
+      <div onclick="window.location.href=\'16_detalhes_despesa.html\'" class="w-full bg-white border border-[#84828F]/25 hover:border-[#5E2B97]/40 rounded-2xl p-4 shadow-2xs cursor-pointer active:scale-[0.99] transition-all" title="Ver detalhes da conta">
+        <div class="flex items-start justify-between mb-2">
+          <div class="flex items-center gap-3">
+            <div class="w-10 h-10 rounded-xl bg-[#5E2B97]/10 flex items-center justify-center text-[#5E2B97]">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M5 12.55a11 11 0 0 1 14.08 0"/>
+                <path d="M1.42 9a16 16 0 0 1 21.16 0"/>
+                <path d="M8.53 16.11a6 6 0 0 1 6.95 0"/>
+                <line x1="12" y1="20" x2="12.01" y2="20"/>
+              </svg>
+            </div>
+            <div>
+              <h4 class="text-xs font-extrabold text-[#2D2D2A]">Internet Fibra 600MB</h4>
+              <p class="text-[10px] text-[#84828F]">Vence em 15/09 • Pago por Norman Osborn</p>
+            </div>
+          </div>
+          
+          <div class="text-right">
+            <span class="text-xs font-black text-[#2D2D2A] block">R$ 140,00</span>
+            <span class="text-[10px] font-bold text-[#5E2B97]">Sua parte: R$ 35,00</span>
+          </div>
+        </div>
+
+        <div class="h-px bg-[#84828F]/15 w-full my-2"></div>
+
+        <!-- Rodapé do Card: Status dos Pagadores -->
+        <div class="flex justify-between items-center text-[10px]">
+          <span class="text-[#84828F]">Rateio: 4 pessoas (Igualitário)</span>
+          <span class="px-2 py-0.5 rounded-full bg-[#84828F]/15 text-[#2D2D2A] font-bold">
+            2 de 4 pagaram
+          </span>
+        </div>
+      </div>
+
+      <!-- Card 2: Energia Elétrica (Recorrente / Atenção ao Prazo) -->
+      <div onclick="window.location.href=\'16_detalhes_despesa.html\'" class="w-full bg-white border border-[#84828F]/25 hover:border-[#5E2B97]/40 rounded-2xl p-4 shadow-2xs cursor-pointer active:scale-[0.99] transition-all" title="Ver detalhes da conta">
+        <div class="flex items-start justify-between mb-2">
+          <div class="flex items-center gap-3">
+            <div class="w-10 h-10 rounded-xl bg-[#CC92C2]/20 flex items-center justify-center text-[#5E2B97]">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon>
+              </svg>
+            </div>
+            <div>
+              <h4 class="text-xs font-extrabold text-[#2D2D2A]">Conta de Energia</h4>
+              <p class="text-[10px] text-[#84828F]">Vence em 20/09 • Pago por Doutor Octopus</p>
+            </div>
+          </div>
+          
+          <div class="text-right">
+            <span class="text-xs font-black text-[#2D2D2A] block">R$ 220,00</span>
+            <span class="text-[10px] font-bold text-[#84828F]">Sua parte: R$ 55,00</span>
+          </div>
+        </div>
+
+        <div class="h-px bg-[#84828F]/15 w-full my-2"></div>
+
+        <div class="flex justify-between items-center text-[10px]">
+          <span class="text-[#84828F]">Rateio: 4 pessoas (Igualitário)</span>
+          <span class="px-2 py-0.5 rounded-full bg-emerald-50 text-emerald-700 font-bold border border-emerald-200">
+            Você já pagou
+          </span>
+        </div>
+      </div>
+
+      <!-- Card 3: Produtos de Limpeza (Compras Coletivas) -->
+      <div onclick="window.location.href=\'16_detalhes_despesa.html\'" class="w-full bg-white border border-[#84828F]/25 hover:border-[#5E2B97]/40 rounded-2xl p-4 shadow-2xs cursor-pointer active:scale-[0.99] transition-all" title="Ver detalhes da conta">
+        <div class="flex items-start justify-between mb-2">
+          <div class="flex items-center gap-3">
+            <div class="w-10 h-10 rounded-xl bg-[#84828F]/15 flex items-center justify-center text-[#2D2D2A]">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="9" cy="21" r="1"></circle>
+                <circle cx="20" cy="21" r="1"></circle>
+                <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+              </svg>
+            </div>
+            <div>
+              <h4 class="text-xs font-extrabold text-[#2D2D2A]">Compras de Limpeza</h4>
+              <p class="text-[10px] text-[#84828F]">Venceu em 08/09 • Pago por Lagarto</p>
+            </div>
+          </div>
+          
+          <div class="text-right">
+            <span class="text-xs font-black text-[#2D2D2A] block">R$ 68,00</span>
+            <span class="text-[10px] font-bold text-emerald-600">Quitada</span>
+          </div>
+        </div>
+
+        <div class="h-px bg-[#84828F]/15 w-full my-2"></div>
+
+        <div class="flex justify-between items-center text-[10px]">
+          <span class="text-[#84828F]">Rateio: 4 pessoas (Igualitário)</span>
+          <span class="px-2 py-0.5 rounded-full bg-emerald-100 text-emerald-800 font-bold">
+            Totalmente quitada
+          </span>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Barra Inferior Fixa de Navegação (Despesas Ativa) -->
+    <div class="w-full bg-white border-t border-[#84828F]/20 px-6 pt-2.5 pb-1 z-40 flex flex-col">
+      <div class="flex justify-between items-center">
+        <!-- Tab: Início -->
+        <a href="13_painel_principal.html" class="flex flex-col items-center gap-1 text-[#84828F] hover:text-[#5E2B97]">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/>
+          </svg>
+          <span class="text-[10px] font-bold">Início</span>
+        </a>
+        <!-- Tab: Despesas (Ativa) -->
+        <a href="14_lista_despesas.html" class="flex flex-col items-center gap-1 text-[#5E2B97]">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+            <line x1="12" y1="1" x2="12" y2="23"/>
+            <path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/>
+          </svg>
+          <span class="text-[10px] font-extrabold">Despesas</span>
+        </a>
+        <!-- Tab: Tarefas -->
+        <a href="20_quadro_tarefas.html" class="flex flex-col items-center gap-1 text-[#84828F] hover:text-[#5E2B97]">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="9 11 12 14 22 4"/>
+            <path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/>
+          </svg>
+          <span class="text-[10px] font-bold">Tarefas</span>
+        </a>
+        <!-- Tab: Ranking -->
+        <a href="24_ranking_moradores.html" class="flex flex-col items-center gap-1 text-[#84828F] hover:text-[#5E2B97]">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="8" r="7"/>
+            <polyline points="8.21 13.89 7 23 12 20 17 23 15.79 13.88"/>
+          </svg>
+          <span class="text-[10px] font-bold">Ranking</span>
+        </a>
+        <!-- Tab: Perfil -->
+        <a href="27_perfil_usuario.html" class="flex flex-col items-center gap-1 text-[#84828F] hover:text-[#5E2B97]">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"></path>
+            <circle cx="12" cy="7" r="4"></circle>
+          </svg>
+          <span class="text-[10px] font-bold">Perfil</span>
+        </a>
+      </div>
+      <div class="home-indicator"></div>
+    </div>
+
+  </div>
+
+  <script src="navigator.js"></script>
+</body>
+</html>

@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SplitHouse - 06 Criar Casa</title>
+  <script src="https://www.gstatic.com/antigravity/web/dev/tailwindcss.min.js"></script>
+  <style>
+    :root {
+      --primary-purple: #5E2B97;   /* Roxo principal */
+      --soft-white: #FCFCFC;       /* Fundo e contraste limpo */
+      --dark-graphite: #2D2D2A;    /* Textos principais e títulos */
+      --accent-lilac: #CC92C2;     /* Lilás/rosa para detalhes */
+      --rosy-granite: #84828F;     /* Cinza rosado para placeholders, bordas e ícones */
+    }
+
+        html, body {
+      width: 390px;
+      height: 844px;
+      margin: 0;
+      padding: 0;
+      overflow: hidden;
+      background-color: transparent;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    }
+
+    /* Dimensões padronizadas mobile (390 x 844 px) */
+    .mobile-frame {
+      width: 390px;
+      height: 844px;
+      background-color: #FCFCFC;
+      border-radius: 48px;
+      position: relative;
+      overflow: hidden;
+      box-shadow: none;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      user-select: none;
+    }
+
+    /* Entalhe superior da câmera (Dynamic Island padrão rigoroso da Tela 04) */
+    .dynamic-island {
+      width: 96px;
+      height: 24px;
+      background-color: #000;
+      border-radius: 20px;
+      position: absolute;
+      left: 50%;
+      top: 10px;
+      transform: translateX(-50%);
+      z-index: 50;
+    }
+
+    /* Brilho decorativo suave */
+    .purple-glow-top {
+      position: absolute;
+      width: 340px;
+      height: 340px;
+      top: -120px;
+      right: -100px;
+      background: radial-gradient(circle, rgba(94, 43, 151, 0.10) 0%, rgba(204, 146, 194, 0.08) 50%, transparent 70%);
+      border-radius: 50%;
+      pointer-events: none;
+    }
+
+    .home-indicator {
+      width: 134px;
+      height: 5px;
+      background-color: #2D2D2A;
+      border-radius: 100px;
+      margin: 8px auto 12px auto;
+      opacity: 0.25;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- FRAME MOBILE CRIAR MORADIA (ADMINISTRADOR) -->
+  <div class="mobile-frame" id="splithouse-screen-06">
+    
+    <div class="purple-glow-top"></div>
+
+    <!-- Barra de Status Mobile Rigorosamente Padronizada com a Tela 04 -->
+    <div class="w-full pt-3 px-8 flex justify-between items-center z-40 text-xs font-semibold text-[#2D2D2A] relative">
+      <span class="tracking-tight pl-1">9:41</span>
+      <div class="dynamic-island"></div>
+      <div class="flex items-center gap-1.5 text-[#2D2D2A] pr-1">
+        <!-- Ícone Sinal -->
+        <svg width="15" height="11" viewBox="0 0 17 12" fill="currentColor">
+          <path d="M1 9h2.5v3H1V9zm4-3h2.5v6H5V6zm4-3h2.5v9H9V3zm4-3h2.5v12H13V0z"/>
+        </svg>
+        <!-- Ícone Wi-Fi -->
+        <svg width="14" height="11" viewBox="0 0 16 12" fill="currentColor">
+          <path d="M8 9.5a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3zm-4.2-3a5.9 5.9 0 0 1 8.4 0l-1.4 1.4a3.9 3.9 0 0 0-5.6 0L3.8 6.5zM1 3.7a9.9 9.9 0 0 1 14 0l-1.4 1.4a7.9 7.9 0 0 0-11.2 0L1 3.7z"/>
+        </svg>
+        <!-- Ícone Bateria -->
+        <div class="w-5 h-2.5 border border-[#2D2D2A] rounded-sm p-0.5 flex items-center">
+          <div class="h-full w-3/4 bg-[#2D2D2A] rounded-2xs"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Barra de Ação Superior (Botão Voltar com folga padronizada) -->
+    <div class="w-full px-7 pt-7 pb-1 z-30 flex items-center">
+      <a href="06_selecao_casa.html" class="w-10 h-10 rounded-xl bg-white border border-[#84828F]/25 flex items-center justify-center text-[#2D2D2A] shadow-xs active:scale-95 transition-transform hover:border-[#5E2B97]/40"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"></polyline></svg></a>
+    </div>
+
+    <!-- Área de Conteúdo / Formulário (Posicionado mais alto com pt-4) -->
+    <div class="flex-1 px-8 pt-4 pb-4 z-30 flex flex-col justify-start">
+      
+      <!-- Cabeçalho -->
+      <div class="mb-5">
+        <h2 class="text-2xl font-extrabold text-[#2D2D2A] tracking-tight mb-1">
+          Cadastrar sua Casa
+        </h2>
+        <p class="text-xs font-normal text-[#84828F] leading-relaxed">
+          Preencha os dados do imóvel. Ao finalizar, geraremos um código exclusivo para os moradores entrarem.
+        </p>
+      </div>
+
+      <!-- Formulário -->
+      <form class="flex flex-col gap-3.5">
+        
+        <!-- Campo: Nome da Casa / Apartamento -->
+        <div class="flex flex-col gap-1">
+          <label class="text-xs font-bold text-[#2D2D2A]">Nome da Casa ou Apartamento</label>
+          <div class="relative flex items-center">
+            <span class="absolute left-4 text-[#84828F]">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/>
+              </svg>
+            </span>
+            <input 
+              type="text" 
+              placeholder="Ex: Residência Osborn / Ap 602" 
+              class="w-full pl-11 pr-4 py-3 bg-white border border-[#84828F]/30 rounded-2xl text-sm font-medium text-[#2D2D2A] focus:outline-none focus:border-[#5E2B97] focus:ring-2 focus:ring-[#5E2B97]/15 shadow-2xs"
+            />
+          </div>
+        </div>
+
+        <!-- Campo: Endereço do Imóvel (conforme Diagrama de Classe) -->
+        <div class="flex flex-col gap-1">
+          <label class="text-xs font-bold text-[#2D2D2A]">Endereço</label>
+          <div class="relative flex items-center">
+            <span class="absolute left-4 text-[#84828F]">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"></path>
+                <circle cx="12" cy="10" r="3"></circle>
+              </svg>
+            </span>
+            <input 
+              type="text" 
+              placeholder="Rua, número e bairro" 
+              class="w-full pl-11 pr-4 py-3 bg-white border border-[#84828F]/30 rounded-2xl text-sm font-medium text-[#2D2D2A] focus:outline-none focus:border-[#5E2B97] focus:ring-2 focus:ring-[#5E2B97]/15 shadow-2xs"
+            />
+          </div>
+        </div>
+
+        <!-- Seleção de Tipo de Moradia (Pills) -->
+        <div class="flex flex-col gap-1">
+          <label class="text-xs font-bold text-[#2D2D2A]">Tipo de Moradia</label>
+          <div class="grid grid-cols-2 gap-2.5 pt-0.5">
+            <button type="button" class="py-2.5 px-3 rounded-xl bg-[#5E2B97] text-[#FCFCFC] font-bold text-xs border border-[#5E2B97] shadow-xs text-center">
+              Apartamento
+            </button>
+            <button type="button" class="py-2.5 px-3 rounded-xl bg-white text-[#2D2D2A] font-semibold text-xs border border-[#84828F]/30 hover:border-[#CC92C2] text-center">
+              Casa
+            </button>
+          </div>
+        </div>
+
+        <!-- Estimativa de Moradores (Auxiliar) -->
+        <div class="flex flex-col gap-1">
+          <label class="text-xs font-bold text-[#2D2D2A]">Quantidade de Moradores (Estimativa)</label>
+          <div class="relative flex items-center">
+            <span class="absolute left-4 text-[#84828F]">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"></path>
+                <circle cx="9" cy="7" r="4"></circle>
+                <path d="M22 21v-2a4 4 0 0 0-3-3.87"></path>
+                <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+              </svg>
+            </span>
+            <input 
+              type="number" 
+              placeholder="Ex: 4" 
+              class="w-full pl-11 pr-4 py-3 bg-white border border-[#84828F]/30 rounded-2xl text-sm font-medium text-[#2D2D2A] focus:outline-none focus:border-[#5E2B97] focus:ring-2 focus:ring-[#5E2B97]/15 shadow-2xs"
+            />
+          </div>
+        </div>
+
+        <!-- Botão Avançar para Regras (Foco Roxo Sólido) -->
+        <a href="08_configurar_regras_casa.html" class="w-full mt-2 py-4 rounded-2xl bg-[#5E2B97] hover:bg-[#4d237d] active:scale-[0.98] transition-all duration-150 text-[#FCFCFC] font-bold text-base shadow-lg shadow-[#5E2B97]/25 flex items-center justify-center gap-2">
+          <span>Avançar para regras</span>
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="5" y1="12" x2="19" y2="12"></line>
+            <polyline points="12 5 19 12 12 19"></polyline>
+          </svg>
+        </a>
+
+      </form>
+
+    </div>
+
+    <!-- Rodapé -->
+    <div class="w-full pb-3 z-30 flex flex-col items-center">
+      <div class="home-indicator"></div>
+    </div>
+
+  </div>
+
+  <script src="navigator.js"></script>
+</body>
+</html>

@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SplitHouse - 09 Solicitação Pendente</title>
+  <script src="https://www.gstatic.com/antigravity/web/dev/tailwindcss.min.js"></script>
+  <style>
+    :root {
+      --primary-purple: #5E2B97;   /* Roxo principal */
+      --soft-white: #FCFCFC;       /* Fundo e contraste limpo */
+      --dark-graphite: #2D2D2A;    /* Textos principais e títulos */
+      --accent-lilac: #CC92C2;     /* Lilás/rosa para detalhes */
+      --rosy-granite: #84828F;     /* Cinza rosado para placeholders, bordas e ícones */
+    }
+
+        html, body {
+      width: 390px;
+      height: 844px;
+      margin: 0;
+      padding: 0;
+      overflow: hidden;
+      background-color: transparent;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    }
+
+    /* Dimensões padronizadas mobile (390 x 844 px) */
+    .mobile-frame {
+      width: 390px;
+      height: 844px;
+      background-color: #FCFCFC;
+      border-radius: 48px;
+      position: relative;
+      overflow: hidden;
+      box-shadow: none;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      user-select: none;
+    }
+
+    /* Entalhe superior da câmera */
+    .dynamic-island {
+      width: 96px;
+      height: 24px;
+      background-color: #000;
+      border-radius: 20px;
+      position: absolute;
+      left: 50%;
+      top: 10px;
+      transform: translateX(-50%);
+      z-index: 50;
+    }
+
+    .purple-glow-top {
+      position: absolute;
+      width: 340px;
+      height: 340px;
+      top: -120px;
+      right: -100px;
+      background: radial-gradient(circle, rgba(94, 43, 151, 0.10) 0%, rgba(204, 146, 194, 0.08) 50%, transparent 70%);
+      border-radius: 50%;
+      pointer-events: none;
+    }
+
+    .home-indicator {
+      width: 134px;
+      height: 5px;
+      background-color: #2D2D2A;
+      border-radius: 100px;
+      margin: 8px auto 12px auto;
+      opacity: 0.25;
+    }
+
+    /* Animação suave de pulso para status pendente */
+    @keyframes pulseRing {
+      0% { transform: scale(0.95); opacity: 0.8; }
+      50% { transform: scale(1.08); opacity: 0.3; }
+      100% { transform: scale(0.95); opacity: 0.8; }
+    }
+    .pulse-effect {
+      animation: pulseRing 3s ease-in-out infinite;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- FRAME MOBILE SOLICITAÇÃO PENDENTE (TELA 09) -->
+  <div class="mobile-frame" id="splithouse-screen-09">
+    
+    <div class="purple-glow-top"></div>
+
+    <!-- Barra de Status Mobile Padronizada -->
+    <div class="w-full pt-3 px-8 flex justify-between items-center z-40 text-xs font-semibold text-[#2D2D2A] relative">
+      <span class="tracking-tight pl-1">9:41</span>
+      <div class="dynamic-island"></div>
+      <div class="flex items-center gap-1.5 text-[#2D2D2A] pr-1">
+        <svg width="15" height="11" viewBox="0 0 17 12" fill="currentColor"><path d="M1 9h2.5v3H1V9zm4-3h2.5v6H5V6zm4-3h2.5v9H9V3zm4-3h2.5v12H13V0z"/></svg>
+        <svg width="14" height="11" viewBox="0 0 16 12" fill="currentColor"><path d="M8 9.5a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3zm-4.2-3a5.9 5.9 0 0 1 8.4 0l-1.4 1.4a3.9 3.9 0 0 0-5.6 0L3.8 6.5zM1 3.7a9.9 9.9 0 0 1 14 0l-1.4 1.4a7.9 7.9 0 0 0-11.2 0L1 3.7z"/></svg>
+        <div class="w-5 h-2.5 border border-[#2D2D2A] rounded-sm p-0.5 flex items-center">
+          <div class="h-full w-3/4 bg-[#2D2D2A] rounded-2xs"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Barra Superior -->
+    <div class="w-full px-7 pt-7 pb-1 z-30 flex items-center justify-between">
+      <button class="w-10 h-10 rounded-xl bg-white border border-[#84828F]/25 flex items-center justify-center text-[#2D2D2A] shadow-xs active:scale-95 transition-transform">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+          <polyline points="15 18 9 12 15 6"></polyline>
+        </svg>
+      </button>
+
+      <!-- Botão Atualizar Status -->
+      <button class="w-10 h-10 rounded-xl bg-white border border-[#84828F]/25 flex items-center justify-center text-[#84828F] hover:text-[#5E2B97] shadow-xs active:scale-95 transition-transform">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M21.5 2v6h-6M21.34 15.57a10 10 0 1 1-.57-8.38l5.67-5.67"/>
+        </svg>
+      </button>
+    </div>
+
+    <!-- Conteúdo Principal -->
+    <div class="flex-1 px-8 pt-4 pb-6 z-30 flex flex-col justify-center items-center text-center">
+      
+      <!-- Ilustração Central com Ampulheta / Relógio Pulsante -->
+      <div class="relative mb-6">
+        <div class="w-24 h-24 rounded-full bg-[#CC92C2]/20 border border-[#CC92C2]/40 flex items-center justify-center pulse-effect absolute inset-0"></div>
+        <div class="w-24 h-24 rounded-full bg-white border-2 border-[#5E2B97] flex items-center justify-center text-[#5E2B97] shadow-md relative z-10">
+          <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="10"></circle>
+            <polyline points="12 6 12 12 16 14"></polyline>
+          </svg>
+        </div>
+      </div>
+
+      <!-- Título e Mensagem -->
+      <h2 class="text-2xl font-black text-[#2D2D2A] tracking-tight mb-2">
+        Solicitação enviada!
+      </h2>
+      <p class="text-xs font-normal text-[#84828F] leading-relaxed max-w-[280px] mb-6">
+        Seu pedido de entrada foi registrado com sucesso e está aguardando a validação do administrador.
+      </p>
+
+      <!-- Card com Dados do Imóvel Solicitado -->
+      <div class="w-full bg-white border border-[#84828F]/25 rounded-3xl p-4 shadow-sm text-left mb-6">
+        <div class="flex items-center gap-3 mb-3">
+          <div class="w-10 h-10 rounded-2xl bg-[#5E2B97]/10 flex items-center justify-center text-[#5E2B97] shrink-0">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/>
+            </svg>
+          </div>
+          <div>
+            <span class="text-[10px] font-bold text-[#84828F] uppercase tracking-wider block leading-none">Imóvel Solicitado</span>
+            <h3 class="text-sm font-extrabold text-[#2D2D2A] mt-0.5">República do Sexteto Sinistro</h3>
+          </div>
+        </div>
+
+        <div class="h-px bg-[#84828F]/15 w-full mb-3"></div>
+
+        <div class="flex justify-between items-center text-xs">
+          <span class="text-[#84828F]">Status do Ingresso:</span>
+          <!-- Tag de Status com o cinza da paleta (#84828F) -->
+          <span class="px-2.5 py-1 rounded-full bg-[#84828F]/15 border border-[#84828F]/30 text-[#2D2D2A] text-[11px] font-bold flex items-center gap-1.5">
+            <span class="w-1.5 h-1.5 rounded-full bg-[#84828F]"></span>
+            Aguardando aprovação
+          </span>
+        </div>
+      </div>
+
+      <!-- Dica Informativa -->
+      <div class="p-3 bg-[#FAF8FC] border border-[#5E2B97]/20 rounded-2xl flex items-start gap-2 text-left">
+        <span class="text-[#5E2B97] mt-0.5 shrink-0">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="10"></circle>
+            <line x1="12" y1="16" x2="12" y2="12"></line>
+            <line x1="12" y1="8" x2="12.01" y2="8"></line>
+          </svg>
+        </span>
+        <p class="text-[11px] text-[#84828F] leading-tight">
+          Você receberá uma notificação assim que o administrador da casa aceitar sua entrada.
+        </p>
+      </div>
+
+    </div>
+
+    <!-- Botões Inferiores -->
+    <div class="w-full px-8 pb-3 z-30 flex flex-col gap-2">
+      <!-- Botão Cancelar Pedido (Caixa baixa) -->
+      <a href="13_painel_principal.html" class="w-full py-3.5 rounded-2xl bg-[#5E2B97] text-[#FCFCFC] font-bold text-xs flex items-center justify-center gap-1.5 shadow-md shadow-[#5E2B97]/25 mb-2 active:scale-[0.98] transition-all text-center decoration-none"><span>Simular aprovação do Admin (Entrar na Casa) &rarr;</span></a><a href="06_selecao_casa.html" class="w-full py-3.5 rounded-2xl bg-white border border-[#84828F]/30 text-[#84828F] hover:bg-zinc-50 active:scale-[0.98] transition-all font-bold text-xs flex items-center justify-center gap-1.5 shadow-2xs text-center decoration-none">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="12" cy="12" r="10"></circle>
+          <line x1="15" y1="9" x2="9" y2="15"></line>
+          <line x1="9" y1="9" x2="15" y2="15"></line>
+        </svg>
+        <span>Cancelar solicitação</span>
+      </a>
+
+      <div class="home-indicator"></div>
+    </div>
+
+  </div>
+
+  <script src="navigator.js"></script>
+</body>
+</html>

@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SplitHouse - 15 Acerto de Contas</title>
+  <script src="https://www.gstatic.com/antigravity/web/dev/tailwindcss.min.js"></script>
+  <style>
+    :root {
+      --primary-purple: #5E2B97;   /* Roxo principal */
+      --soft-white: #FCFCFC;       /* Fundo e contraste limpo */
+      --dark-graphite: #2D2D2A;    /* Textos principais e títulos */
+      --accent-lilac: #CC92C2;     /* Lilás/rosa para detalhes e destaques */
+      --rosy-granite: #84828F;     /* Cinza rosado para bordas e subtítulos */
+    }
+
+        html, body {
+      width: 390px;
+      height: 844px;
+      margin: 0;
+      padding: 0;
+      overflow: hidden;
+      background-color: transparent;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    }
+
+    /* Dimensões padronizadas mobile (390 x 844 px) */
+    .mobile-frame {
+      width: 390px;
+      height: 844px;
+      background-color: #FCFCFC;
+      border-radius: 48px;
+      position: relative;
+      overflow: hidden;
+      box-shadow: none;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      user-select: none;
+    }
+
+    /* Entalhe superior da câmera (Dynamic Island padrão) */
+    .dynamic-island {
+      width: 96px;
+      height: 24px;
+      background-color: #000;
+      border-radius: 20px;
+      position: absolute;
+      left: 50%;
+      top: 10px;
+      transform: translateX(-50%);
+      z-index: 50;
+    }
+
+    .purple-glow-top {
+      position: absolute;
+      width: 340px;
+      height: 340px;
+      top: -120px;
+      right: -100px;
+      background: radial-gradient(circle, rgba(94, 43, 151, 0.10) 0%, rgba(204, 146, 194, 0.08) 50%, transparent 70%);
+      border-radius: 50%;
+      pointer-events: none;
+    }
+
+    .home-indicator {
+      width: 134px;
+      height: 5px;
+      background-color: #2D2D2A;
+      border-radius: 100px;
+      margin: 6px auto 8px auto;
+      opacity: 0.25;
+    }
+
+    .no-scrollbar::-webkit-scrollbar {
+      display: none;
+    }
+    .no-scrollbar {
+      -ms-overflow-style: none;
+      scrollbar-width: none;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- FRAME MOBILE ACERTO DE CONTAS (TELA 15) -->
+  <div class="mobile-frame" id="splithouse-screen-15">
+    
+    <div class="purple-glow-top"></div>
+
+    <!-- Barra de Status Mobile Padronizada -->
+    <div class="w-full pt-3 px-8 flex justify-between items-center z-40 text-xs font-semibold text-[#2D2D2A] relative">
+      <span class="tracking-tight pl-1">9:41</span>
+      <div class="dynamic-island"></div>
+      <div class="flex items-center gap-1.5 text-[#2D2D2A] pr-1">
+        <svg width="15" height="11" viewBox="0 0 17 12" fill="currentColor"><path d="M1 9h2.5v3H1V9zm4-3h2.5v6H5V6zm4-3h2.5v9H9V3zm4-3h2.5v12H13V0z"/></svg>
+        <svg width="14" height="11" viewBox="0 0 16 12" fill="currentColor"><path d="M8 9.5a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3zm-4.2-3a5.9 5.9 0 0 1 8.4 0l-1.4 1.4a3.9 3.9 0 0 0-5.6 0L3.8 6.5zM1 3.7a9.9 9.9 0 0 1 14 0l-1.4 1.4a7.9 7.9 0 0 0-11.2 0L1 3.7z"/></svg>
+        <div class="w-5 h-2.5 border border-[#2D2D2A] rounded-sm p-0.5 flex items-center">
+          <div class="h-full w-3/4 bg-[#2D2D2A] rounded-2xs"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Barra Superior: Voltar e Título -->
+    <div class="w-full px-7 pt-7 pb-1 z-30 flex items-center justify-between">
+      <a href="14_lista_despesas.html" class="w-10 h-10 rounded-xl bg-white border border-[#84828F]/25 flex items-center justify-center text-[#2D2D2A] shadow-xs active:scale-95 transition-transform hover:border-[#5E2B97]/40"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"></polyline></svg></a>
+
+      <h3 class="text-sm font-extrabold text-[#2D2D2A]">Acertar Contas</h3>
+
+      <div class="w-10"></div>
+    </div>
+
+    <!-- Conteúdo Principal Roolável -->
+    <div class="flex-1 px-7 pt-3 pb-3 z-30 overflow-y-auto no-scrollbar flex flex-col gap-3.5">
+      
+      <!-- Cabeçalho -->
+      <div>
+        <h2 class="text-2xl font-extrabold text-[#2D2D2A] tracking-tight mb-1">
+          Balanço da Casa
+        </h2>
+        <p class="text-xs font-normal text-[#84828F]">
+          República do Sexteto Sinistro • Resumo de créditos e débitos
+        </p>
+      </div>
+
+      <!-- Card de Saldo Pessoal Consolidado (RF-05) -->
+      <div class="w-full bg-[#FAF8FC] border border-[#5E2B97]/25 rounded-2xl p-4 shadow-2xs">
+        <div class="flex justify-between items-center mb-1.5">
+          <span class="text-[11px] font-bold text-[#84828F] uppercase tracking-wider">Situação de Norman Osborn</span>
+          <span class="px-2 py-0.5 rounded-full bg-emerald-50 text-emerald-700 font-bold text-[10px] border border-emerald-200">
+            Credor Geral
+          </span>
+        </div>
+        <div class="flex items-baseline gap-1">
+          <span class="text-xs text-[#84828F] font-bold">Saldo líquido a receber:</span>
+          <span class="text-xl font-black text-[#5E2B97]">R$ 85,50</span>
+        </div>
+      </div>
+
+      <!-- Seção: Quem deve para quem (Acerto Simplificado) -->
+      <div class="flex flex-col gap-2.5">
+        <span class="text-xs font-bold text-[#2D2D2A]">
+          Pendências bilaterais na casa
+        </span>
+
+        <!-- Débito 1: Doutor Octopus deve para Norman Osborn -->
+        <div class="w-full bg-white border border-[#84828F]/20 rounded-2xl p-4 shadow-2xs flex flex-col gap-3">
+          <div class="flex items-center justify-between">
+            <div class="flex items-center gap-2.5">
+              <div class="w-9 h-9 rounded-xl bg-[#CC92C2]/25 text-[#2D2D2A] flex items-center justify-center text-xs font-bold">
+                DO
+              </div>
+              <div>
+                <h4 class="text-xs font-extrabold text-[#2D2D2A]">Doutor Octopus</h4>
+                <p class="text-[10px] text-[#84828F]">deve para você</p>
+              </div>
+            </div>
+            <span class="text-sm font-black text-[#5E2B97]">R$ 50,50</span>
+          </div>
+
+          <div class="h-px bg-[#84828F]/10 w-full"></div>
+
+          <div class="flex items-center justify-between text-[11px]">
+            <span class="text-[#84828F]">Ref: Internet Fibra + Padaria</span>
+            <button class="px-3 py-1.5 rounded-xl bg-[#5E2B97]/10 text-[#5E2B97] font-bold text-xs hover:bg-[#5E2B97]/15 active:scale-95 transition-all">
+              Lembrar (Cutucar)
+            </button>
+          </div>
+        </div>
+
+        <!-- Débito 2: Homem-Areia deve para Norman Osborn -->
+        <div class="w-full bg-white border border-[#84828F]/20 rounded-2xl p-4 shadow-2xs flex flex-col gap-3">
+          <div class="flex items-center justify-between">
+            <div class="flex items-center gap-2.5">
+              <div class="w-9 h-9 rounded-xl bg-[#CC92C2]/25 text-[#2D2D2A] flex items-center justify-center text-xs font-bold">
+                HA
+              </div>
+              <div>
+                <h4 class="text-xs font-extrabold text-[#2D2D2A]">Homem-Areia</h4>
+                <p class="text-[10px] text-[#84828F]">deve para você</p>
+              </div>
+            </div>
+            <span class="text-sm font-black text-[#5E2B97]">R$ 35,00</span>
+          </div>
+
+          <div class="h-px bg-[#84828F]/10 w-full"></div>
+
+          <div class="flex items-center justify-between text-[11px]">
+            <span class="text-[#84828F]">Ref: Internet Fibra</span>
+            <button class="px-3 py-1.5 rounded-xl bg-[#5E2B97]/10 text-[#5E2B97] font-bold text-xs hover:bg-[#5E2B97]/15 active:scale-95 transition-all">
+              Lembrar (Cutucar)
+            </button>
+          </div>
+        </div>
+
+        <!-- Débito 3: Lagarto (Totalmente em dia) -->
+        <div class="w-full bg-white border border-[#84828F]/20 rounded-2xl p-3.5 shadow-2xs flex items-center justify-between">
+          <div class="flex items-center gap-2.5">
+            <div class="w-9 h-9 rounded-xl bg-zinc-100 text-[#84828F] flex items-center justify-center text-xs font-bold">
+              LG
+            </div>
+            <div>
+              <h4 class="text-xs font-extrabold text-[#2D2D2A]">Lagarto</h4>
+              <p class="text-[10px] text-emerald-600 font-semibold">Tudo quitado com você</p>
+            </div>
+          </div>
+          <span class="text-xs font-bold text-[#84828F]">R$ 0,00</span>
+        </div>
+
+      </div>
+
+    </div>
+
+    <!-- Botão de Ação Inferior: Informar Pagamento Realizado -->
+    <div class="w-full px-7 pb-3 z-30 flex flex-col gap-2">
+      <a href="18_confirmar_pagamento.html" class="w-full py-4 rounded-2xl bg-[#5E2B97] hover:bg-[#4d237d] active:scale-[0.98] transition-all text-[#FCFCFC] font-bold text-base shadow-md shadow-[#5E2B97]/25 flex items-center justify-center gap-2 text-center decoration-none">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="2" y="4" width="20" height="16" rx="2"/>
+          <line x1="2" y1="10" x2="22" y2="10"/>
+        </svg>
+        <span>Informar pagamento efetuado</span>
+      </a>
+
+      <div class="home-indicator"></div>
+    </div>
+
+  </div>
+
+  <script src="navigator.js"></script>
+</body>
+</html>
