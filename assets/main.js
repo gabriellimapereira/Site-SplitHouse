@@ -46,6 +46,12 @@ function initMobileDrawer() {
   drawerLinks.forEach((link) => {
     link.addEventListener("click", closeDrawer);
   });
+
+  document.addEventListener("keydown", (e) => {
+    if (e.key === "Escape" && drawer && drawer.classList.contains("open")) {
+      closeDrawer();
+    }
+  });
 }
 
 /* ==========================================================================
